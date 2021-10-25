@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/kyunghyun/learngo/something"
 )
 
 func index(w http.ResponseWriter, r *http.Request) {
@@ -12,4 +14,11 @@ func index(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/", index)
 	log.Fatal(http.ListenAndServe(":3000", nil))
+}
+func ma() {
+	something.SayHello()
+}
+func min() {
+	name := "nico"
+	fmt.Println(name)
 }
