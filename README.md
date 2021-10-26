@@ -20,6 +20,7 @@ go에서는 패키지,타입과 똑같은 이름의 변수를 사용하여도 �
 
 상수 const
 
+go에서는 타입을 정하지 않으면 go에서 알아서 타입을 지정해준다
 
 
 <img width="300" alt="스크린샷 2021-10-26 오전 12 40 06" src="https://user-images.githubusercontent.com/88940298/138727421-15f9ef34-9bfb-4202-b1fd-4ef9ad1e5b04.png">
