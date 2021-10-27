@@ -46,3 +46,14 @@ swtich 조건문과 마찬가지로 사용법은 switch,case와 비슷하지만 
 
 반복문을 사용할 떄는 for키워드를 이용한다. go 언어에는 while문이 없기 떄문에 for문에서 모든 반복을 해결한다. 무한루프의 경우 아무것도 안주면 되어 타언어에 비해 심플하다 배열이나 슬라이드,문을 순회할떄 range키워드를 사용하여 순회 할 수 있다. 키 인덱스가 들어가며 두번쨰에는 값이 들어간다.
 반복문을 제어하는 방법으로는 break,continue가 존재한다.break를 사용하면 반복문에서 즉시 탈출하며,continue를사용하면 그 이후 표현식은 무시하고 다시 조건문으로 돌아간다
+
+<img width="171" alt="스크린샷 2021-10-27 오후 2 20 51" src="https://user-images.githubusercontent.com/88940298/139004540-59a4b021-cb73-4120-aa5c-1f8cf0c42b13.png">
+
+## Pointers
+& :메모리의 주소값
+* : 주소에 담긴 값을 살펴볼수 잇음
+
+<img width="340" alt="스크린샷 2021-10-27 오후 2 26 28" src="https://user-images.githubusercontent.com/88940298/139005018-256a8d69-4597-40b3-aa49-0cd0cdc570c3.png">
+
+##Array ana Slices
+
