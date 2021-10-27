@@ -32,13 +32,14 @@ go get go get을 통하여 다른 패키지를 다운받을 수 있다.얻어온
 
 go mod 사용자 정의 모듈을 만들떄 사용한다. example.com폴더로 진입하여 go mod init example.com명령어를 통해 모듈을 정의한다
 
-<img width="300" alt="스크린샷 2021-10-26 오전 12 40 06" src="https://user-images.githubusercontent.com/88940298/138727421-15f9ef34-9bfb-4202-b1fd-4ef9ad1e5b04.png">
+
+<img width="355" alt="스크린샷 2021-10-27 오후 2 11 44" src="https://user-images.githubusercontent.com/88940298/139003610-95bf570c-fa06-4959-815c-5e2bea14f2c7.png">
 
 
-if문 
+## if문 
 조건문을 사용할떄 변수를 함께 선언할 수있다.
 
 swtich 조건문과 마찬가지로 사용법은 switch,case와 비
 
-
-for문 
+<img width="300" alt="스크린샷 2021-10-26 오전 12 40 06" src="https://user-images.githubusercontent.com/88940298/138727421-15f9ef34-9bfb-4202-b1fd-4ef9ad1e5b04.png">
+## for문 
