@@ -27,10 +27,18 @@ go는 리턴 값을 여러개의 값으로 돌릴 수 있다.
 defer키워드는 go에서 지원하는 특이한 키워드중 하나 이다. defer 을 통해  먼저 예약이 가능 하며 , defer은 나중에 설정된 defer부터 실행된다.
 
 go&go-routine go 키워드는 멀티스레드를 사용할때 유용하며 동시성을 가진다.
+ 
+go get go get을 통하여 다른 패키지를 다운받을 수 있다.얻어온 패키지는 GOPATH로 다운로드 된다.GOPATH는 작업공간이라고도 하며 사용자마다 별도로 관리된다
 
-
+go mod 사용자 정의 모듈을 만들떄 사용한다. example.com폴더로 진입하여 go mod init example.com명령어를 통해 모듈을 정의한다
 
 <img width="300" alt="스크린샷 2021-10-26 오전 12 40 06" src="https://user-images.githubusercontent.com/88940298/138727421-15f9ef34-9bfb-4202-b1fd-4ef9ad1e5b04.png">
+
+
+if문 
+조건문을 사용할떄 변수를 함께 선언할 수있다.
+
+swtich 조건문과 마찬가지로 사용법은 switch,case와 비
 
 
 for문 
