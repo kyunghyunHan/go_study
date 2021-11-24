@@ -1,5 +1,6 @@
-# go_study 
-go 
+ 
+#Go  -공부 및 정리-
+![gopher](https://user-images.githubusercontent.com/88940298/143169462-5ff79cc1-4b41-4aca-bb87-37b901c0000a.jpeg)
 
 
 
