@@ -1,6 +1,7 @@
  
 #Go  -공부 및 정리-
-![gopher](https://user-images.githubusercontent.com/88940298/143169462-5ff79cc1-4b41-4aca-bb87-37b901c0000a.jpeg)
+
+<img width="461" alt="스크린샷 2021-11-24 오후 12 28 54" src="https://user-images.githubusercontent.com/88940298/143169831-99d59153-1735-49a6-8d7c-d3768dfc9400.png">
 
 
 
