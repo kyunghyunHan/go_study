@@ -102,10 +102,12 @@ Main패키지에서 접근 가능한것은 대문자로 되어있는 메서드�
 4.현재 홈 디렉터리의 go 폴더와 같이 유효한 소스 디렉터리를 가리키도록 GOPATH 환경 변수를 설정 Bash 셸에서 export GOPATH=~/go를 실행하여 go 디렉터리를 현재 셸 세션에 대한 GOPATH로 추가
 
 5.go get github.com/go-sql-driver/mysql 명령을 실행하여 MySQL용 go-sql-driver(영문)를 설치
+```
  mkdir -p ~/go/src/mysqlgo/
 cd ~/go/src/mysqlgo/
 export GOPATH=~/go/
 go get github.com/go-sql-driver/mysql
+```
 요약!!!, Go 설치 후 다음 bash 명령을 실행합니다.연결
 
 
