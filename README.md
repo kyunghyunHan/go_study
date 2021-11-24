@@ -277,3 +277,122 @@ func main() {
     fmt.Println("Done.")
 }
 ```
+
+### 데이터 업데이트
+
+UPDATE SQL 문을 사용하여 데이터를 연결하고 업데이트하려면 다음 코드를 사용하세요.
+
+이 코드는 세 개의 패키지, 즉 sql 패키지, MySQL용 Azure Database와 통신할 드라이버로 사용되는 go sql driver for mysql, 명령줄에 출력되는 입출력을 위한 fmt 패키지를 가져옵니다.
+
+sql.Open() 메서드를 호출하여 MySQL용 Azure Database에 연결하고 db.Ping() 메서드를 사용하여 연결을 확인합니다. 데이터베이스 핸들은 이러한 과정 내내 사용되며 데이터베이스 서버에 대한 연결 풀을 보유합니다. Exec() 메서드를 호출하여 update 명령을 실행합니다. 매번 사용자 지정 checkError() 메서드를 사용하여, 오류가 발생하여 서둘러 종료했는지 확인합니다.
+
+host, database, user 및 password 상수는 원하는 값으로 바꿉니다.
+
+```
+package main
+
+import (
+    "database/sql"
+    "fmt"
+
+    _ "github.com/go-sql-driver/mysql"
+)
+
+const (
+    host     = "mydemoserver.mysql.database.azure.com"
+    database = "quickstartdb"
+    user     = "myadmin@mydemoserver"
+    password = "yourpassword"
+)
+
+func checkError(err error) {
+    if err != nil {
+        panic(err)
+    }
+}
+
+func main() {
+
+    // Initialize connection string.
+    var connectionString = fmt.Sprintf("%s:%s@tcp(%s:3306)/%s?allowNativePasswords=true", user, password, host, database)
+
+    // Initialize connection object.
+    db, err := sql.Open("mysql", connectionString)
+    checkError(err)
+    defer db.Close()
+
+    err = db.Ping()
+    checkError(err)
+    fmt.Println("Successfully created connection to database.")
+
+    // Modify some data in table.
+    rows, err := db.Exec("UPDATE inventory SET quantity = ? WHERE name = ?", 200, "banana")
+    checkError(err)
+    rowCount, err := rows.RowsAffected()
+    fmt.Printf("Updated %d row(s) of data.\n", rowCount)
+    fmt.Println("Done.")
+}
+```
+
+### 데이터 삭제
+
+다음 코드를 사용하여 데이터를 연결하고 DELETE SQL 문을 통해 데이터를 제거합니다.
+
+이 코드는 세 개의 패키지, 즉 sql 패키지, MySQL용 Azure Database와 통신할 드라이버로 사용되는 go sql driver for mysql, 명령줄에 출력되는 입출력을 위한 fmt 패키지를 가져옵니다.
+
+sql.Open() 메서드를 호출하여 MySQL용 Azure Database에 연결하고 db.Ping() 메서드를 사용하여 연결을 확인합니다. 데이터베이스 핸들은 이러한 과정 내내 사용되며 데이터베이스 서버에 대한 연결 풀을 보유합니다. Exec() 메서드를 호출하여 delete 명령을 실행합니다. 매번 사용자 지정 checkError() 메서드를 사용하여, 오류가 발생하여 서둘러 종료했는지 확인합니다.
+
+host, database, user 및 password 상수는 원하는 값으로 바꿉니다.
+
+```
+package main
+
+import (
+    "database/sql"
+    "fmt"
+    _ "github.com/go-sql-driver/mysql"
+)
+
+const (
+    host     = "mydemoserver.mysql.database.azure.com"
+    database = "quickstartdb"
+    user     = "myadmin@mydemoserver"
+    password = "yourpassword"
+)
+
+func checkError(err error) {
+    if err != nil {
+        panic(err)
+    }
+}
+
+func main() {
+
+    // Initialize connection string.
+    var connectionString = fmt.Sprintf("%s:%s@tcp(%s:3306)/%s?allowNativePasswords=true", user, password, host, database)
+
+    // Initialize connection object.
+    db, err := sql.Open("mysql", connectionString)
+    checkError(err)
+    defer db.Close()
+
+    err = db.Ping()
+    checkError(err)
+    fmt.Println("Successfully created connection to database.")
+
+    // Modify some data in table.
+    rows, err := db.Exec("DELETE FROM inventory WHERE name = ?", "orange")
+    checkError(err)
+    rowCount, err := rows.RowsAffected()
+    fmt.Printf("Deleted %d row(s) of data.\n", rowCount)
+    fmt.Println("Done.")
+}
+```
+
+### 리소스 정리
+```
+az group delete \
+    --name $AZ_RESOURCE_GROUP \
+    --yes
+```
+
