@@ -2,9 +2,6 @@
 go 
 
 
-<img width="509" alt="스크린샷 2021-10-26 오전 12 36 59" src="https://user-images.githubusercontent.com/88940298/138727331-671b1969-66a1-4be2-acb9-177d1152a4b3.png">
-
-3000 서버  연결
 
 <img width="403" alt="스크린샷 2021-10-26 오전 12 39 35" src="https://user-images.githubusercontent.com/88940298/138727383-95f932d6-ffde-467d-bd05-5e3806c4906f.png">
 
@@ -396,3 +393,9 @@ az group delete \
     --yes
 ```
 
+
+#서버연결
+
+<img width="509" alt="스크린샷 2021-10-26 오전 12 36 59" src="https://user-images.githubusercontent.com/88940298/138727331-671b1969-66a1-4be2-acb9-177d1152a4b3.png">
+
+3000 서버  연결
