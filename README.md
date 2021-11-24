@@ -77,7 +77,7 @@ for~range를 사용하여 순회할수 있으며, 순서가 지정되있지 않�
 
 go 에는 클래스가 없다.객체라는 단어는 거의 사용하지 않으며 c언어처럼 구조체라는 존재가 있다.
 
-### 구조체 
+#
 구조체는 클래스처럼 객체를 찍어내기위한 판 이라 접근하면 좋다.struct라는 키워드를 사용하며 person이라는구조체를 선언하고 main에서
 구조체를 타입으로 갖는 변수를 선언하고 값을 할당하는 모습을 보여주고 있다.
 메서드는 일반적은 메서드파라메터외에 리시버파라메터라는것을 사용한다.이는 go의 특징이다.
@@ -87,3 +87,34 @@ func다음에 파라메타 같은 형태로 나타낸 것을 볼수 있는데 �
 캡슐화 Getter/setter
 Main패키지에서 접근 가능한것은 대문자로 되어있는 메서드이며 setter를 만들떄 항상 Set*의 형태로한다
 또한 New로 시작하는 것은 생성자라 생각하면 좋다
+
+
+
+
+## GoLang Mysql 
+
+1.Bash 셸을 시작
+
+2.홈 디렉터리에서 프로젝트 폴더생성 (예: mkdir -p ~/go/src/mysqlgo/).
+
+3.디렉터리를 폴더로 변경(예: cd ~/go/src/mysqlgo/).
+
+4.현재 홈 디렉터리의 go 폴더와 같이 유효한 소스 디렉터리를 가리키도록 GOPATH 환경 변수를 설정 Bash 셸에서 export GOPATH=~/go를 실행하여 go 디렉터리를 현재 셸 세션에 대한 GOPATH로 추가
+
+5.go get github.com/go-sql-driver/mysql 명령을 실행하여 MySQL용 go-sql-driver(영문)를 설치
+ mkdir -p ~/go/src/mysqlgo/
+cd ~/go/src/mysqlgo/
+export GOPATH=~/go/
+go get github.com/go-sql-driver/mysql
+요약!!!, Go 설치 후 다음 bash 명령을 실행합니다.연결
+
+
+
+# 연결정보 가져오기
+
+MySQL용 Azure Database에 연결하는 데 필요한 연결 정보 확인  정규화된 서버 이름 및 로그인 자격 증명이 필요!!
+
+1.Azure Portal에 로그인
+2.Azure Portal의 왼쪽 메뉴에서 모든 리소스 를 클릭한 다음, 방금 만든 서버를 검색(예: mydemoserver).
+3.서버 이름을 클릭
+4.서버의 개요 패널에 있는 서버 이름 과 서버 관리자 로그인 이름 을 기록 하기  암호를 잊어버리면 이 패널에서 암호를 재설정 가능
