@@ -71,7 +71,7 @@ var r1 rune = '한'
 var r2 rune = '\ud55c'     // 한
 var r3 rune = '\U0000d55c' // 한
 ```
-## [if문](https://github.com/kyunghyunHan/go_study/blob/20b7a158827c881e3c9055357917f4c969c1e736/if.md)
+## [if문](https://github.com/kyunghyunHan/go_study/blob/969ebb1c93c8cb200082b8e62919c6ebc8a7e02d/if.md)
 조건문을 사용할떄 변수를 함께 선언할 수있다.  
 
 swtich 조건문과 마찬가지로 사용법은 switch,case와 비슷하지만 break문이 필요없다 .새로운 키워드인 fallthrough를 선택했다.fallthrough를사용해야 다음으로 넘어 갈 수있다.또한 다른 언어와 다르게 조건을 생략하고 case를 사용할 수 잇다.  
