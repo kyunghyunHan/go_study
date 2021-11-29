@@ -4,8 +4,15 @@
 <img width="461" alt="스크린샷 2021-11-24 오후 12 28 54" src="https://user-images.githubusercontent.com/88940298/143169831-99d59153-1735-49a6-8d7c-d3768dfc9400.png">
 
 
+## 가비지 컬렉션
+Go 언어는 가비지 컬렉션(Garbage Collection, GC)을 제공합니다. C, C++는 메모리를 할당하면 반드시 해제를 해주어야 합니다. 이렇게 되다 보니 C, C++ 프로그래밍은 로직 작성보다 메모리 관리에 더 많은 노력과 시간을 소모하고 있어서 생산성이 많이 떨어집니다. 이후 메모리를 알아서 관리해주는 가비지 컬렉션 기술이 나왔고, 이 기술을 사용한 Java와 C#이 등장했습니다. 마찬가지로 Python, Ruby, JavaScript 등의 스크립트 언어들도 각 언어의 가상 머신에서 가비지 컬렉션 기술을 사용하고 있습니다.
 
+그림 1-4와 같이 Go 언어는 메모리를 관리해주는 가비지 컬렉터(Garbage Collector)가 실행 파일안에 내장되어 있습니다. 가상 머신 위에서 실행되는 언어들처럼 가상 머신이 메모리 관리를 해주는 것과 차이가 있습니다. 즉 Go 언어는 C, C++ 실행 파일 방식의 간결함과 가상 머신의 가비지 컬렉션 기능을 함께 가지고 있습니다.
+
+## 병행성 
+Go 언어는 go 키워드를 통해 함수 여러 개를 동시에 실행할 수 있습니다. 이렇게 실행된 함수를 고루틴(Goroutine)이라고 하는데 스레드와는 차이점이 있습니다. 스레드는 운영체제의 커널에서 제공하는 리소스이기 때문에 많이 생성할수록 부담이 커집니다. 그림 1-5와 같이 Go 언어는 적정량의 스레드를 생성해서 고루틴을 처리합니다. 또한, 최대 프로세서(코어) 개수 설정에 따라 멀티코어도 지원됩니다(현재 프로세서의 개수를 구할 수 있으며, 일부 프로세서만 사용할 수도 있습니다)
 <img width="400" alt="스크린샷 2021-10-26 오전 12 39 35" src="https://user-images.githubusercontent.com/88940298/138727383-95f932d6-ffde-467d-bd05-5e3806c4906f.png">
+
 
 go 에서는 ;(세미클론이 필요없다) 선택적으로 사용할 수는 있음  
 go에서는 패키지 개념 패키지 내부에서는 변수,상수,함수,구조체,메서드가 선언되어 있다.  
@@ -18,6 +25,19 @@ import"fmt" 다른 패키지를 포함하기 위해 사용 go 의패키지는 sr
 
 go에서는 패키지,타입과 똑같은 이름의 변수를 사용하여도 에러가 나지 않는다  
 
+
+
+## 변수 
+
+var 변수1, 변수2 자료형 = 초깃값1, 초깃값2 : 여러개의 변수를 
+
+```
+var x, y int = 30, 50       // x = 30, y = 50
+var age, name = 10, "Maria" // age = 10, name = "Maria"
+```
+```
+a, b, c, d := 1, 3.4, "Hello, world!", false // a = 1, b = 3.4, c = "Hello, world!", d = false
+```
 ## 상수 const
 
 go에서는 타입을 정하지 않으면 go에서 알아서 타입을 지정해준다  
@@ -35,13 +55,82 @@ go mod 사용자 정의 모듈을 만들떄 사용한다. example.com폴더로 �
 
 <img width="355" alt="스크린샷 2021-10-27 오후 2 11 44" src="https://user-images.githubusercontent.com/88940298/139003610-95bf570c-fa06-4959-815c-5e2bea14f2c7.png">
 
+## 바이트
+byte에는 보통 16진수, 문자 값으로 저장합니다. 실무에서는 바이너리 파일에서 데이터를 읽고 쓰거나, 데이터를 암호화, 복호화할 때 주로 사용합니다.
+```
+var num1 byte = 10   // 10진수 저장
+var num2 byte = 0x32 // 16진수 저장
+var num3 byte = 'a'  // 문자 저장
+```
 
+
+## 룬 
+rune은 유니코드(UTF-8) 문자 코드를 저장할 때 사용합니다. ' ' (작은 따옴표)로 묶어주어야 하며 문자 그대로 저장하거나 \u 또는 \U를 사용하여 유니코드 문자 코드로 저장할 수도 있습니다. 여기서 \U는 값을 16진수 8자리로 맞춰주어야 합니다
+```
+var r1 rune = '한'
+var r2 rune = '\ud55c'     // 한
+var r3 rune = '\U0000d55c' // 한
+```
 ## if문 
 조건문을 사용할떄 변수를 함께 선언할 수있다.  
 
 swtich 조건문과 마찬가지로 사용법은 switch,case와 비슷하지만 break문이 필요없다 .새로운 키워드인 fallthrough를 선택했다.fallthrough를사용해야 다음으로 넘어 갈 수있다.또한 다른 언어와 다르게 조건을 생략하고 case를 사용할 수 잇다.  
 
 <img width="300" alt="스크린샷 2021-10-26 오전 12 40 06" src="https://user-images.githubusercontent.com/88940298/138727421-15f9ef34-9bfb-4202-b1fd-4ef9ad1e5b04.png">
+## 숫자 연산
+숫자 연산에는 덧셈(+), 뺄셈(-), 곱셈(*), 나눗셈(/), 나머지(%), 시프트(<<, >>), 비트 반전(^) 연산자를 사용할 수 있습니다.
+```
+var num1 uint8 = 3
+var num2 uint8 = 2
+
+fmt.Println(num1 + num2)  // 5
+fmt.Println(num1 - num2)  // 1
+fmt.Println(num1 * num2)  // 6
+fmt.Println(num1 / num2)  // 1
+fmt.Println(num1 % num2)  // 1
+fmt.Println(num1 << num2) // 12
+fmt.Println(num1 >> num2) // 0
+fmt.Println(^num1)        // 252: 비트 반전 연산자
+```
+
+## 오버플로우와 언더플로우
+각 자료형에서 저장할 수 있는 최대 크기를 넘어서면 오버플로우(Overflow), 최소 크기보다 작아지면 언더플로우(Underflow)
+```
+package main
+
+import "fmt"
+import "math"
+
+func main() {
+	var num1 uint8 = math.MaxUint8 + 1   // 오버플로우 컴파일 에러 발생
+	var num2 uint16 = math.MaxUint16 + 1 // 오버플로우 컴파일 에러 발생
+	var num3 uint32 = math.MaxUint32 + 1 // 오버플로우 컴파일 에러 발생
+	var num4 uint64 = math.MaxUint64 + 1 // 오버플로우 컴파일 에러 발생
+}
+```
+## 문자열 길이
+```
+var s1 string = "한글"
+var s2 string = "Hello"
+
+fmt.Println(len(s1)) // 6: UTF-8 인코딩의 바이트 길이이므로 6
+fmt.Println(len(s2)) // 5: 알파벳 5글자이므로 5
+```
+
+## 열거형
+
+```
+const (
+	Sunday       = 0
+	Monday       = 1
+	Tuesday      = 2
+	Wednesday    = 3
+	Thursday     = 4
+	Friday       = 5
+	Saturday     = 6
+	numberOfDays = 7
+)
+```
 ## for문 
 
 반복문을 사용할 떄는 for키워드를 이용한다. go 언어에는 while문이 없기 떄문에 for문에서 모든 반복을 해결한다.  
