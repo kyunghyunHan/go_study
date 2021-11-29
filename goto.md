@@ -102,3 +102,4 @@ ERROR:
 	fmt.Println("Error")
 }
 ```
+변수 선언 부분과 fmt.Println(b) 부분은 실행되지 않고 넘어가므로 Error 만 출력됩니다.
