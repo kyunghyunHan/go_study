@@ -154,7 +154,8 @@ swtich 조건문과 마찬가지로 사용법은 switch,case와 비슷하지만 
 
 <img width="340" alt="스크린샷 2021-10-27 오후 2 26 28" src="https://user-images.githubusercontent.com/88940298/139005018-256a8d69-4597-40b3-aa49-0cd0cdc570c3.png">
 
-## Array ana Slices. [Slice](https://github.com/kyunghyunHan/go_study/blob/20b7a158827c881e3c9055357917f4c969c1e736/slice.md)
+## [Array](https://github.com/kyunghyunHan/go_study/blob/20b7a158827c881e3c9055357917f4c969c1e736/slice.md)
+## [Slice](https://github.com/kyunghyunHan/go_study/blob/20b7a158827c881e3c9055357917f4c969c1e736/slice.md)
 
 제로갑:배열만 선언해놓고, 값을 할당하지 않은 경우 각 타입에 맞는 제로값이 설정된다  
 인덱스 제로베이스 : 0 부터 시작 length-1까지 해당  
