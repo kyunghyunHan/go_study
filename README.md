@@ -71,7 +71,7 @@ var r1 rune = '한'
 var r2 rune = '\ud55c'     // 한
 var r3 rune = '\U0000d55c' // 한
 ```
-## [if문]()
+## [if문](https://github.com/kyunghyunHan/go_study/blob/20b7a158827c881e3c9055357917f4c969c1e736/if.md)
 조건문을 사용할떄 변수를 함께 선언할 수있다.  
 
 swtich 조건문과 마찬가지로 사용법은 switch,case와 비슷하지만 break문이 필요없다 .새로운 키워드인 fallthrough를 선택했다.fallthrough를사용해야 다음으로 넘어 갈 수있다.또한 다른 언어와 다르게 조건을 생략하고 case를 사용할 수 잇다.  
@@ -133,7 +133,7 @@ const (
 	numberOfDays = 7
 )
 ```
-## for문.    
+## [for문](https://github.com/kyunghyunHan/go_study/blob/20b7a158827c881e3c9055357917f4c969c1e736/for.md) 
 
 반복문을 사용할 떄는 for키워드를 이용한다. go 언어에는 while문이 없기 떄문에 for문에서 모든 반복을 해결한다.  
 무한루프의 경우 아무것도 안주면 되어 타언어에 비해 심플하다 배열이나 슬라이드,문을 순회할떄 range키워드를 사용하여 순회 할 수 있다. 키 인덱스가 들어가며 두번쨰에는 값이 들어간다.  
@@ -141,13 +141,13 @@ const (
 
 <img width="171" alt="스크린샷 2021-10-27 오후 2 20 51" src="https://user-images.githubusercontent.com/88940298/139004540-59a4b021-cb73-4120-aa5c-1f8cf0c42b13.png">
 
-## Pointers
+## [Pointers](https://github.com/kyunghyunHan/go_study/blob/20b7a158827c881e3c9055357917f4c969c1e736/pointer.md)
 & :메모리의 주소값
 * : 주소에 담긴 값을 살펴볼수 잇음
 
 <img width="340" alt="스크린샷 2021-10-27 오후 2 26 28" src="https://user-images.githubusercontent.com/88940298/139005018-256a8d69-4597-40b3-aa49-0cd0cdc570c3.png">
 
-## Array ana Slices. 
+## Array ana Slices. [Slice](https://github.com/kyunghyunHan/go_study/blob/20b7a158827c881e3c9055357917f4c969c1e736/slice.md)
 
 제로갑:배열만 선언해놓고, 값을 할당하지 않은 경우 각 타입에 맞는 제로값이 설정된다  
 인덱스 제로베이스 : 0 부터 시작 length-1까지 해당  
@@ -168,7 +168,7 @@ for~range를 사용하여 순회할수 있으며, 순서가 지정되있지 않�
 <img width="467" alt="스크린샷 2021-10-27 오후 3 09 01" src="https://user-images.githubusercontent.com/88940298/139009338-e0c7544e-8e2a-4d2b-831b-f5cbd68e4c7d.png">  
 
 
-## Struct. 
+## [struct](https://github.com/kyunghyunHan/go_study/blob/20b7a158827c881e3c9055357917f4c969c1e736/struct.md)
 
 go 에는 클래스가 없다.  객체라는 단어는 거의 사용하지 않으며 c언어처럼 구조체라는 존재가 있다.  
 
