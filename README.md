@@ -71,10 +71,7 @@ var r1 rune = '한'
 var r2 rune = '\ud55c'     // 한
 var r3 rune = '\U0000d55c' // 한
 ```
-## [if문](https://github.com/kyunghyunHan/go_study/blob/969ebb1c93c8cb200082b8e62919c6ebc8a7e02d/if.md)
-조건문을 사용할떄 변수를 함께 선언할 수있다.  
 
-swtich 조건문과 마찬가지로 사용법은 switch,case와 비슷하지만 break문이 필요없다 .새로운 키워드인 fallthrough를 선택했다.fallthrough를사용해야 다음으로 넘어 갈 수있다.또한 다른 언어와 다르게 조건을 생략하고 case를 사용할 수 잇다.  
 
 ## 숫자 연산. 
 숫자 연산에는 덧셈(+), 뺄셈(-), 곱셈(*), 나눗셈(/), 나머지(%), 시프트(<<, >>), 비트 반전(^) 연산자를 사용할 수 있습니다.  
@@ -130,6 +127,14 @@ const (
 	numberOfDays = 7
 )
 ```
+## [fmt](https://github.com/kyunghyunHan/go_study/blob/b51d98381a325e779dbc4ed371d2f258cda180b6/fmt.md)
+출력함수. 
+ 
+## [if문](https://github.com/kyunghyunHan/go_study/blob/969ebb1c93c8cb200082b8e62919c6ebc8a7e02d/if.md)
+조건문을 사용할떄 변수를 함께 선언할 수있다.  
+
+swtich 조건문과 마찬가지로 사용법은 switch,case와 비슷하지만 break문이 필요없다 .새로운 키워드인 fallthrough를 선택했다.fallthrough를사용해야 다음으로 넘어 갈 수있다.또한 다른 언어와 다르게 조건을 생략하고 case를 사용할 수 잇다.  
+
 ## [for문](https://github.com/kyunghyunHan/go_study/blob/667aa33064651847371e1e867db3ee4581c2c736/for.md) 
 
 반복문을 사용할 떄는 for키워드를 이용한다. go 언어에는 while문이 없기 떄문에 for문에서 모든 반복을 해결한다.  
