@@ -137,7 +137,7 @@ const (
 반복문을 제어하는 방법으로는 break,continue가 존재한다.break를 사용하면 반복문에서 즉시 탈출하며,continue를사용하면 그 이후 표현식은 무시하고 다시 조건문으로 돌아간다  
 
 ## [goto](https://github.com/kyunghyunHan/go_study/blob/c3ff62212208d1d65ac838d443c7c22fc92ebcd2/goto.md) 
-
+## [Switch](https://github.com/kyunghyunHan/go_study/blob/667aa33064651847371e1e867db3ee4581c2c736/for.md) 
 ## [Pointers](https://github.com/kyunghyunHan/go_study/blob/20b7a158827c881e3c9055357917f4c969c1e736/pointer.md)
 <img width="171" alt="스크린샷 2021-10-27 오후 2 20 51" src="https://user-images.githubusercontent.com/88940298/139004540-59a4b021-cb73-4120-aa5c-1f8cf0c42b13.png">
 & :메모리의 주소값
