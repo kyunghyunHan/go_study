@@ -78,6 +78,23 @@ swtich 조건문과 마찬가지로 사용법은 switch,case와 비슷하지만 
 
 <img width="300" alt="스크린샷 2021-10-26 오전 12 40 06" src="https://user-images.githubusercontent.com/88940298/138727421-15f9ef34-9bfb-4202-b1fd-4ef9ad1e5b04.png">
 
+
+## 숫자 연산. 
+숫자 연산에는 덧셈(+), 뺄셈(-), 곱셈(*), 나눗셈(/), 나머지(%), 시프트(<<, >>), 비트 반전(^) 연산자를 사용할 수 있습니다.  
+```
+var num1 uint8 = 3
+var num2 uint8 = 2
+
+fmt.Println(num1 + num2)  // 5
+fmt.Println(num1 - num2)  // 1
+fmt.Println(num1 * num2)  // 6
+fmt.Println(num1 / num2)  // 1
+fmt.Println(num1 % num2)  // 1
+fmt.Println(num1 << num2) // 12
+fmt.Println(num1 >> num2) // 0
+fmt.Println(^num1)        // 252: 비트 반전 연산자
+```
+
 ## 오버플로우와 언더플로우. 
 각 자료형에서 저장할 수 있는 최대 크기를 넘어서면 오버플로우(Overflow), 최소 크기보다 작아지면 언더플로우(Underflow)  
 ```
