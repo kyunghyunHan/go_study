@@ -78,3 +78,27 @@ ERROR2: // 에러 처리 2
 	return
 }
 ```
+먼저 레이블을 사용하여 에러 처리 코드를 작성했습니다. 그리고 에러 상황일 때는 매번 에러 처리 코드를 작성하지 않고, goto 키워드를 사용하여 레이블로 이동한 뒤 에러를 처리합니다.
+
+goto 키워드 바로 뒤에서는 코드가 실행되지 않고 넘어가므로 주의합니다.
+
+
+
+```
+package main
+
+import "fmt"
+
+func main() {
+	var a int = 1
+
+	if a == 1 {
+		goto ERROR // 여기까지만 실행하고 ERROR 레이블로 이동
+		b := 1
+		fmt.Println(b)
+	}
+
+ERROR:
+	fmt.Println("Error")
+}
+```
