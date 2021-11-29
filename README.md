@@ -76,9 +76,6 @@ var r3 rune = '\U0000d55c' // 한
 
 swtich 조건문과 마찬가지로 사용법은 switch,case와 비슷하지만 break문이 필요없다 .새로운 키워드인 fallthrough를 선택했다.fallthrough를사용해야 다음으로 넘어 갈 수있다.또한 다른 언어와 다르게 조건을 생략하고 case를 사용할 수 잇다.  
 
-<img width="300" alt="스크린샷 2021-10-26 오전 12 40 06" src="https://user-images.githubusercontent.com/88940298/138727421-15f9ef34-9bfb-4202-b1fd-4ef9ad1e5b04.png">
-
-
 ## 숫자 연산. 
 숫자 연산에는 덧셈(+), 뺄셈(-), 곱셈(*), 나눗셈(/), 나머지(%), 시프트(<<, >>), 비트 반전(^) 연산자를 사용할 수 있습니다.  
 ```
