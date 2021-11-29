@@ -1,5 +1,5 @@
  
-# Go  -공부 및 정리-
+#Go  -공부 및 정리-
 
 <img width="461" alt="스크린샷 2021-11-24 오후 12 28 54" src="https://user-images.githubusercontent.com/88940298/143169831-99d59153-1735-49a6-8d7c-d3768dfc9400.png">
 
@@ -71,7 +71,7 @@ var r1 rune = '한'
 var r2 rune = '\ud55c'     // 한
 var r3 rune = '\U0000d55c' // 한
 ```
-## if문 
+## [if문]()
 조건문을 사용할떄 변수를 함께 선언할 수있다.  
 
 swtich 조건문과 마찬가지로 사용법은 switch,case와 비슷하지만 break문이 필요없다 .새로운 키워드인 fallthrough를 선택했다.fallthrough를사용해야 다음으로 넘어 갈 수있다.또한 다른 언어와 다르게 조건을 생략하고 case를 사용할 수 잇다.  
@@ -185,7 +185,5 @@ Main패키지에서 접근 가능한것은 대문자로 되어있는 메서드�
 또한 New로 시작하는 것은 생성자라 생각하면 좋다
 
 
-```
-```
+## [서버 연결](https://github.com/kyunghyunHan/go_study/blob/f29db2308b47119deb3f708d129a7fa0df3fbeea/golangMysql.md)
 
-[서버 연결](https://github.com/kyunghyunHan/go_study/blob/f29db2308b47119deb3f708d129a7fa0df3fbeea/golangMysql.md)
