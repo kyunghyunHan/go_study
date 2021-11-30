@@ -147,7 +147,7 @@ swtich 조건문과 마찬가지로 사용법은 switch,case와 비슷하지만 
 ## [Switch](https://github.com/kyunghyunHan/go_study/blob/da340d061c02304fafdbe324439eb4a1f91b7ace/switch.md) 
 
 
-## [Pointers](https://github.com/kyunghyunHan/go_study/blob/20b7a158827c881e3c9055357917f4c969c1e736/pointer.md)
+## [Pointers](https://github.com/kyunghyunHan/go_study/blob/6e6df9cdca4d7e9a5015e4da88af43d8daee8f0a/pointer.md)
 <img width="171" alt="스크린샷 2021-10-27 오후 2 20 51" src="https://user-images.githubusercontent.com/88940298/139004540-59a4b021-cb73-4120-aa5c-1f8cf0c42b13.png">
 & :메모리의 주소값
 * : 주소에 담긴 값을 살펴볼수 잇음
