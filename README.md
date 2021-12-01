@@ -194,4 +194,5 @@ Main패키지에서 접근 가능한것은 대문자로 되어있는 메서드�
 
 
 ## [서버 연결](https://github.com/kyunghyunHan/go_study/blob/f29db2308b47119deb3f708d129a7fa0df3fbeea/golangMysql.md)
+## [Mysql 연결]()
 
