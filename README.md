@@ -175,7 +175,7 @@ for~range를 사용하여 순회할수 있으며, 순서가 지정되있지 않�
 <img width="430" alt="스크린샷 2021-10-27 오후 2 53 48" src="https://user-images.githubusercontent.com/88940298/139007738-0376e5af-079c-44c8-ae20-228d1847a9f3.png">
 <img width="467" alt="스크린샷 2021-10-27 오후 3 09 01" src="https://user-images.githubusercontent.com/88940298/139009338-e0c7544e-8e2a-4d2b-831b-f5cbd68e4c7d.png">  
 
-
+## [](https://github.com/kyunghyunHan/go_study/blob/main/map.md)
 ## [struct](https://github.com/kyunghyunHan/go_study/blob/20b7a158827c881e3c9055357917f4c969c1e736/struct.md)
 
 go 에는 클래스가 없다.  객체라는 단어는 거의 사용하지 않으며 c언어처럼 구조체라는 존재가 있다.  
