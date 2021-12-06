@@ -72,3 +72,68 @@ if value, ok := solarSystem["Saturn"]; ok {
 0 false
 10756.199
 ```
+
+## 맵 순회
+맵의 모든 데이터를 출력해보겠습니다. 배열, 슬라이스와 마찬가지로 맵도 for 반복문에서 range 키워드를 사용합니다.
+
+- for 키, 값 := range 맵 { }
+```
+for key, value := range solarSystem { // 반복문이 실행될 때마다 키와 값이 자동으로 변수에 들어감
+	fmt.Println(key, value)
+}
+```
+range 키워드를 사용하면 반복문이 실행될 때 마다 맵의 키와 값이 자동으로 변수에 들어갑니다.
+
+range의 리턴값에서 키 변수를 사용하고 싶지 않다면 _ (밑줄 문자)를 사용합니다.
+```
+for _, value := range solarSystem { // 키 변수를 사용하고 싶지 않다면 _ 사용
+	fmt.Println(value)
+}
+```
+
+## 맵에서 데이터 삭제
+맵에서 값을 삭제하려면 delete 함수를 사용합니다.
+- delete(맵, 삭제할_키)
+
+```
+a := map[string]int{"Hello": 10, "world": 20}
+
+delete(a, "world") // 맵 a에서 world 키 삭제
+
+fmt.Println(a) // map[Hello:10]
+```
+## 맵안에 맵 생성
+맵의 값 안에는 일반 자료형뿐만 아니라 맵 자체도 들어갈 수 있습니다.
+
+- map[키_자료형]map[키_자료형]값_자료형
+다음은 지구형 행성의 반지름, 질량, 공전주기를 맵으로 표현한 예제입니다.
+
+```
+terrestrialPlanet := map[string]map[string]float32{
+	"Mercury": map[string]float32{
+		"meanRadius":    2439.7,
+		"mass":          3.3022E+23,
+		"orbitalPeriod": 87.969,
+	},
+	"Venus": map[string]float32{
+		"meanRadius":    6051.8,
+		"mass":          4.8676E+24,
+		"orbitalPeriod": 224.70069,
+	},
+	"Earth": map[string]float32{
+		"meanRadius":    6371.0,
+		"mass":          5.97219E+24,
+		"orbitalPeriod": 365.25641,
+	},
+	"Mars": map[string]float32{
+		"meanRadius":    3389.5,
+		"mass":          6.4185E+23,
+		"orbitalPeriod": 686.9600,
+	},
+}
+
+fmt.Println(terrestrialPlanet["Mars"]["mass"]) // 6.4185E+23
+```
+```
+6.4185e+23
+```
