@@ -145,3 +145,183 @@ func main() {
 여기서는 int 포인터 a의 값 정보에서 바로 Int 함수로 값을 가져오려면 런타임 에러가 발생합니다. 따라서 Elem 함수로 포인터의 메모리에 저장된 실제 값 정보를 가져와야 합니다.
 
 빈 인터페이스 b에 1을 대입하면 타입 정보는 int이고 값 정보는 int입니다. 따라서 인터페이스의 값을 가져오려면 변수 타입에 맞는 Int, Float, String 등의 함수를 사용하면 됩니다.
+
+## 동적으로 함수 생성
+
+이번에는 리플렉션을 사용하여 동적으로 함수를 만들어내는 방법을 알아보겠습니다.
+
+먼저 reflect.MakeFunc 함수를 사용하는 방법입니다
+```
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+func h(args []reflect.Value) []reflect.Value { // 매개변수와 리턴값은 반드시 
+                                               // []reflect.Value를 사용
+	fmt.Println("Hello, world!")
+	return nil
+}
+
+func main() {
+	var hello func() // 함수를 담을 변수 선언
+
+	fn := reflect.ValueOf(&hello).Elem() // hello의 주소를 넘긴 뒤 Elem으로 값 정보를 가져옴
+
+	v := reflect.MakeFunc(fn.Type(), h) // h의 함수 정보를 생성
+
+	fn.Set(v) // hello의 값 정보인 fn에 h의 함수 정보 v를 설정하여 함수를 연결
+
+	hello()
+}
+```
+```
+Hello, world!
+```
+먼저 매개변수와 리턴값으로 []reflect.Value를 사용하는 함수 h를 정의합니다. 이 함수에서 실제 기능을 구현하며 여기서는 Hello, world!를 출력했습니다. 리플렉션으로 생성하는 함수는 반드시 []reflect.Value를 매개변수로 받고 리턴값으로 사용해야 합니다.
+
+이제 함수를 담을 수 있는 변수를 hello를 선언합니다. 그리고 reflect.ValueOf 함수에 hello의 주소(레퍼런스)를 넘긴 뒤 Elem 함수로 실제 값 정보를 가져옵니다. 그 다음에는 reflect.MakeFunc(fn.Type(), h)과 같이 함수 h를 넣어서 함수 정보를 생성합니다. 마지막으로 fn.Set(v)와 같이 hello의 값 정보인 fn에 함수 정보 v를 설정하여 함수를 연결해줍니다
+모든 과정을 마친 뒤 hello 함수를 호출하면 Hello, world!가 출력됩니다. 즉 hello 함수는 h 함수를 이용하여 동적으로 생성된 함수입니다. 하지만 Hello, world!를 출력하기에는 복잡하기만 합니다.
+
+동적 함수 생성을 좀더 제대로 활용하기 위해 함수 하나로 정수, 실수, 문자열 더하기를 모두 처리하는 함수를 생성해보겠습니다.
+
+먼저 두 값을 더하는 sum 함수를 구현합니다.
+```
+...
+
+func sum(args []reflect.Value) []reflect.Value {
+	a, b := args[0], args[1]
+	if a.Kind() != b.Kind() {
+		fmt.Println("타입이 다릅니다.")
+		return nil
+	}
+
+	switch a.Kind() {
+	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+		return []reflect.Value{reflect.ValueOf(a.Int() + b.Int())}
+	case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
+		return []reflect.Value{reflect.ValueOf(a.Uint() + b.Uint())}
+	case reflect.Float32, reflect.Float64:
+		return []reflect.Value{reflect.ValueOf(a.Float() + b.Float())}
+	case reflect.String:
+		return []reflect.Value{reflect.ValueOf(a.String() + b.String())}
+	default:
+		return []reflect.Value{}
+	}
+}
+
+...
+```
+
+리플렉션으로 생성될 함수이므로 매개변수와 리턴값의 타입은 []reflect.Value입니다. 그러므로 두 값을 더할 때 첫 번째 매개변수는 args[0], 두 번째 매개변수는 args[1]이 됩니다. 여기서는 두 값의 타입 종류를 비교해서 다르면 nil을 리턴을 하도록 구현했습니다. 하지만 구현하기에 따라서 float32와 int32를 더하여 float64를 만들 수도 있고, string과 int32를 더하여 string을 만들 수도 있습니다.
+
+switch 분기문으로 타입 종류를 구분하고, 같은 종류의 타입은 묶어서 처리합니다. return []reflect.Value{reflect.ValueOf(a.Int() + b.Int())}와 같이 타입 종류에 맞게 변수에서 값을 꺼내서 더하고, []reflect.Value 슬라이스로 만들어서 리턴합니다.
+
+이제 매개변수로 받은 변수에 함수를 연결해주는 함수를 구현합니다.
+```
+...
+
+func makeSum(fptr interface{}) {
+	fn := reflect.ValueOf(fptr).Elem()
+
+	v := reflect.MakeFunc(fn.Type(), sum)
+
+	fn.Set(v)
+}
+
+...
+```
+빈 인터페이스로 매개변수를 받은 뒤 reflect.ValueOf 함수와 Elem 함수를 사용하여 실제 값 정보를 가져옵니다. 이때 매개변수로 들어올 값은 함수를 저장할 수 있는 변수입니다. 그 다음에는 reflect.MakeFunc(fn.Type(), sum)과 같이 함수 sum을 넣어서 함수 정보를 생성합니다. 마지막으로 fn.Set(v)와 같이 fptr의 값 정보인 fn에 함수 정보 v를 설정하여 함수를 연결해줍니다.
+
+이렇게 하면 매개변수, 리턴값 자료형의 형태가 다양한 함수를 동적으로 연결시킬 수 있습니다.
+
+이제 main 함수에서 함수를 저장할 수 있는 변수를 선언합니다. 함수 모양을 하고 있지만 실제 함수가 정의되어 있지 않기 때문에 호출은 할 수 없는 상태입니다.
+```
+...
+
+func main() {
+	var intSum func(int, int) int64
+	var floatSum func(float32, float32) float64
+	var stringSum func(string, string) string
+
+...
+}
+
+```
+두 값을 더하므로 매개변수는 두 개이며 각 타입별로 선언합니다. 여기서 리턴값은 크기가 가장 큰 타입을 사용합니다. 즉 정수는 int64, 실수는 float64를 사용해야 합니다.
+
+앞에서 선언한 변수의 레퍼런스(포인터)를 makeSum 함수에 넣어주면 완전한 형태의 함수가 생성됩니다.
+```
+func main() {
+...
+
+	makeSum(&intSum)
+	makeSum(&floatSum)
+	makeSum(&stringSum)
+
+	fmt.Println(intSum(1, 2))                   // 3
+	fmt.Println(floatSum(2.1, 3.5))             // 5.599999904632568
+	fmt.Println(stringSum("Hello, ", "world!")) // Hello, world!
+}
+```
+```
+3
+5.599999904632568
+Hello, world!
+```
+intSum 함수는 정수를 더하고, floatSum 함수는 실수를 더하고, stringSum 함수는 문자열을 붙입니다. 함수는 세 종류지만 실제로는 앞에서 구현한 sum 함수 하나로 처리됩니다. 이처럼 리플렉션의 동적 함수 생성 기능을 활용하면 타입별로 함수를 여러 벌 구현하지 않아도 됩니다.
+
+다음은 전체 소스 코드입니다.
+```
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+func sum(args []reflect.Value) []reflect.Value {
+	a, b := args[0], args[1]
+	if a.Kind() != b.Kind() {
+		fmt.Println("타입이 다릅니다.")
+		return nil
+	}
+
+	switch a.Kind() {
+	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+		return []reflect.Value{reflect.ValueOf(a.Int() + b.Int())}
+	case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
+		return []reflect.Value{reflect.ValueOf(a.Uint() + b.Uint())}
+	case reflect.Float32, reflect.Float64:
+		return []reflect.Value{reflect.ValueOf(a.Float() + b.Float())}
+	case reflect.String:
+		return []reflect.Value{reflect.ValueOf(a.String() + b.String())}
+	default:
+		return []reflect.Value{}
+	}
+}
+
+func makeSum(fptr interface{}) {
+	fn := reflect.ValueOf(fptr).Elem()
+
+	v := reflect.MakeFunc(fn.Type(), sum)
+
+	fn.Set(v)
+}
+
+func main() {
+	var intSum func(int, int) int64
+	var floatSum func(float32, float32) float64
+	var stringSum func(string, string) string
+
+	makeSum(&intSum)
+	makeSum(&floatSum)
+	makeSum(&stringSum)
+
+	fmt.Println(intSum(1, 2))                   // 3
+	fmt.Println(floatSum(2.1, 3.5))             // 5.599999904632568
+	fmt.Println(stringSum("Hello, ", "world!")) // Hello, world!
+}
+```
