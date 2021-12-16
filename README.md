@@ -1,6 +1,6 @@
  ![다운로드](https://user-images.githubusercontent.com/88940298/146376240-aef62ec1-d091-4a99-9bc1-90852b2db0f6.png)
 
-# Go  -공부 및 정리-
+# Go  <img width="200" alt="스크린샷 2021-11-24 오후 12 28 54" src="https://user-images.githubusercontent.com/88940298/143169831-99d59153-1735-49a6-8d7c-d3768dfc9400.png">공부 및 정리-
 
 <img width="200" alt="스크린샷 2021-11-24 오후 12 28 54" src="https://user-images.githubusercontent.com/88940298/143169831-99d59153-1735-49a6-8d7c-d3768dfc9400.png">
 
