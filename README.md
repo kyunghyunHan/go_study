@@ -127,9 +127,13 @@ const (
 	numberOfDays = 7
 )
 ```
+
+## [패키지](https://github.com/kyunghyunHan/go_study/blob/0c7e77e48504492e73e7c61e257d35ef441d6890/package.md)
+
+
 ## [fmt](https://github.com/kyunghyunHan/go_study/blob/b51d98381a325e779dbc4ed371d2f258cda180b6/fmt.md)
 출력함수. 
- 
+
 ## [if문](https://github.com/kyunghyunHan/go_study/blob/969ebb1c93c8cb200082b8e62919c6ebc8a7e02d/if.md)
 조건문을 사용할떄 변수를 함께 선언할 수있다.  
 
