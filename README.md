@@ -151,7 +151,7 @@ swtich 조건문과 마찬가지로 사용법은 switch,case와 비슷하지만 
 
 ## [Switch](https://github.com/kyunghyunHan/go_study/blob/da340d061c02304fafdbe324439eb4a1f91b7ace/switch.md) 
 
-
+## [Array](https://github.com/kyunghyunHan/go_study/blob/e7e3267cf53cf89426232efa34635a7d47fd2727/arr.md)
 ## [Pointers](https://github.com/kyunghyunHan/go_study/blob/6e6df9cdca4d7e9a5015e4da88af43d8daee8f0a/pointer.md)
 <img width="171" alt="스크린샷 2021-10-27 오후 2 20 51" src="https://user-images.githubusercontent.com/88940298/139004540-59a4b021-cb73-4120-aa5c-1f8cf0c42b13.png">
 & :메모리의 주소값
@@ -159,7 +159,6 @@ swtich 조건문과 마찬가지로 사용법은 switch,case와 비슷하지만 
 
 <img width="340" alt="스크린샷 2021-10-27 오후 2 26 28" src="https://user-images.githubusercontent.com/88940298/139005018-256a8d69-4597-40b3-aa49-0cd0cdc570c3.png">
 
-## [Array](https://github.com/kyunghyunHan/go_study/blob/20b7a158827c881e3c9055357917f4c969c1e736/slice.md)
 ## [Slice](https://github.com/kyunghyunHan/go_study/blob/20b7a158827c881e3c9055357917f4c969c1e736/slice.md)
 
 제로갑:배열만 선언해놓고, 값을 할당하지 않은 경우 각 타입에 맞는 제로값이 설정된다  
