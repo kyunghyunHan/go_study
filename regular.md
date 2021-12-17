@@ -131,3 +131,47 @@ func main() {
 - ^는 문자열이 맨 앞에 오는지 검사합니다.
 - $는 문자열이 맨 뒤에 오는지 검사합니다.
 - \\.[a-zA-Z]+\\([0-9]+\\)$처럼 ( ) (괄호)도 \\를 앞에 붙여서 표현할 수 있습니다. 여기서는 .SetValue(20)처럼 영문으로 된 문자열 뒤에 괄호가 오고, 괄호안에 숫자가 있으면서 맨 뒤에 있는지 검사합니다.
+
+## 이메일 주소 검사
+
+다음은 regexp 패키지에서 제공하는 정규표현식 컴파일 함수와 검사 함수입니다.
+
+- func Compile(expr string) (*Regexp, error): 정규표현식을 컴파일하여 Regexp 인스턴스를 생성
+- func (re *Regexp) MatchString(s string) bool: 문자열이 Regexp 인스턴스에 정의된 정규표현식에 맞는지 검사
+실무에서 많이 사용하는 이메일 주소 정규표현식을 알아보겠습니다.
+```
+package main
+
+import (
+	"fmt"
+	"regexp"
+)
+
+func main() {
+	var validEmail, _ = regexp.Compile(
+		"^[_a-z0-9+-.]+@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$",
+	)
+
+	fmt.Println(validEmail.MatchString("hello@mail.example.com"))    // true
+	fmt.Println(validEmail.MatchString("hello+kr@example.com"))      // true
+	fmt.Println(validEmail.MatchString("hello-world@example.co.kr")) // true
+	fmt.Println(validEmail.MatchString("hello_1@example.info"))      // true
+	fmt.Println(validEmail.MatchString("gildong.hong@e-xample.com")) // true
+
+	fmt.Println(validEmail.MatchString("@example.com"))            // false
+	fmt.Println(validEmail.MatchString("hello@example"))           // fasle
+	fmt.Println(validEmail.MatchString("hello@example.cooooooom")) // false
+}
+```
+보통 회원 가입 단계에서 이메일 주소가 정상인지 검사할 때가 많습니다. 이 때는 정규표현식을 사용하면 편리합니다. 먼저 이메일의 규칙은 계정@도메인.최상위도메인 형식이며 계정에 +, -, _등의 기호를 붙이기도 합니다. 그리고 도메인에도 - 기호를 사용할 수 있고, 최상위 도메인이 여러 단계일 수 있습니다. 이런 규칙을 정규표현식으로 표현하면 다음과 같습니다.
+
+```
+"^[_a-z0-9+-.]+@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$"
+```
+부분 부분으로 나누어 생각하면 쉽게 이해할 수 있습니다.
+
+- ^[_a-z0-9+-.]+@는 @를 기준으로 계정을 표현합니다. ^가 붙었으므로 무조건 문자열의 맨 앞에 와야합니다. 그리고 [_a-z0-9+-.]+이므로 영문 소문자, 숫자, _, +, -, .으로 계정이 만들어져 있어야 하고, 한 글자라도 있어야 합니다(+). 즉 예제와 같이 hello, hello+kr, hello-world, hello_1, gildong.hong 등을 표현할 수 있습니다.
+- [a-z0-9-]+(\\.[a-z0-9-]+)*는 서브 도메인, 도메인 부분입니다. 이렇게 각 부분이 +, *로 구분되는 부분은 괄호로 묶어줍니다. 영문 소문자와 숫자 -로만 서브 도메인, 도메인이 만들어져 있어야 하고, 한 글자라도 있어야 합니다. 여기서 (\.[a-z0-9-]+)*처럼 괄호로 묶은 뒤 *를 사용하면 이 부분은 있어도 되고 없어도 된다는 뜻입니다. 보통 서브 도메인은 없을 수도 있기 때문입니다. 즉, 예제와 같이 mail.example.com, example.co, e-xample 등을 표현할 수 있습니다.
+- (\\.[a-z]{2,4})$는 최상위 도메인(TLD) 부분입니다. 소문자만 사용할 수 있고 문자열의 맨 뒤에 와야 합니다. 여기서 {2,4}처럼 중괄호에 숫자를 지정하여 최소 개수, 최대 개수를 표현할 수 있습니다. 따라서 영문 소문자 2개에서 4개까지 입니다. 즉 예제와 같이 .com, .kr, .info 등을 표현할 수 있습니다(실제로는 4글자 이상인 TLD도 있으므로 상황에 맞게 수정하여 사용합니다).
+복잡한 정규표현식은 regexp.Compile 함수로 컴파일 해두었다가 나중에 반복해서 사용할 수 있습니다.
+
