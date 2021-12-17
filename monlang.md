@@ -104,3 +104,119 @@ func main() {
 - strings.LastIndex 함수는 문자열에서 가장 마지막에 나오는 특정 문자열의 위치를 구합니다. 따라서 앞 부분에서 문자열이 나오더라도 뒤에 또 나온다면 가장 마지막에 발견되는 인덱스를 리턴합니다. 검색할 단어가 정확히 일치해야 합니다. 그리고 문자열이 없으면 -1을 리턴합니다.
 - strings.LastIndexAny 함수는 검색할 문자열의 문자 중 가장 마지막에 나오는 문자의 위치를 구합니다. 유니코드 단위로 검색합니다. 문자가 없으면 -1을 리턴합니다.
 - strings.LastIndexFunc 함수는 검색할 함수를 따로 정의하여 가장 마지막에 나오는 문자의 위치를 알아냅니다. 예제에서는 unicode.Is 함수를 사용하여 가장 마지막에 있는 한글 유니코드의 시작 위치를 알아냅니다.
+
+
+## 문자열 조작하기
+다음은 strings 패키지에서 제공하는 문자열 조작 함수입니다.
+
+- func Join(a []string, sep string) string: 문자열 슬라이스에 저장된 문자열을 모두 연결
+- func Split(s, sep string) []string: 지정된 문자열을 기준으로 문자열을 쪼개어 문자열 슬라이스로 저장
+- func Fields(s string) []string: 공백을 기존으로 문자열을 쪼개어 문자열 슬라이스로 저장
+- func FieldsFunc(s string, f func(rune) bool) []string: 유니코드 검사 함수를 정의한 뒤 특정 유니코드 값을 기준으로 문자열을 쪼개어 문자열 슬라이스로 저장
+- func Repeat(s string, count int) string: 문자열을 특정 횟수만큼 반복
+- func Replace(s, old, new string, n int) string: 문자열에서 특정 문자열을 바꿈
+- func Trim(s string, cutset string) string: 문자열 앞 뒤에 있는 특정 문자열 제거
+- func TrimLeft(s string, cutset string) string: 문자열 앞에 오는 특정 문자열 제거
+- func TrimRight(s string, cutset string) string: 문자열 뒤에 오는 특정 문자열 제거
+- func TrimFunc(s string, f func(rune) bool) string: 문자열 정리 함수를 정의하여 문자열 제거
+- func TrimLeftFunc(s string, f func(rune) bool) string: 문자열 정리 함수를 정의하여 문자열 앞에 오는 특정 문자열 제거
+- func TrimRightFunc(s string, f func(rune) bool) string: 문자열 정리 함수를 정의하여 문자열 뒤에오는 특정 문자열 제거
+- func TrimSpace(s string) string: 문자열 앞뒤에오는 공백 문자 제거
+- func TrimSuffix(s, suffix string) string: 접미사 제거
+- func NewReplacer(oldnew ...string) *Replacer: 문자열 교체 인스턴스를 생성
+- func (r *Replacer) Replace(s string) string: 문자열 교체 인스턴스를 사용하여 문자열을 교체
+이번에는 문자열을 연결하고, 쪼개고, 반복하고, 바꾸는 방법을 알아보겠습니다.
+```
+package main
+
+import (
+	"fmt"
+	"strings"
+	"unicode"
+)
+
+func main() {
+	s1 := []string{"Hello,", "world!"}
+	fmt.Println(strings.Join(s1, " ")) // Hello, world!
+
+	s2 := strings.Split("Hello, world!", " ")
+	fmt.Println(s2[1]) // world!
+
+	s3 := strings.Fields("Hello, world!")
+	fmt.Println(s3[1]) // world!
+
+	f := func(r rune) bool {
+		return unicode.Is(unicode.Hangul, r) // r이 한글 유니코드이면 true를 리턴
+	}
+	s4 := strings.FieldsFunc("Hello안녕Hello", f)
+	fmt.Println(s4) // [Hello Hello]
+
+	fmt.Println(strings.Repeat("Hello", 2)) // HelloHello
+
+	fmt.Println(strings.Replace("Hello, world!", "world", "Go", 1)) // Hello, Go!
+	fmt.Println(strings.Replace("Hello Hello", "llo", "Go", 2))     // HeGo HeGo
+}
+```
+- strings.Join 함수는 문자열 슬라이스에 저장된 문자열을 모두 연결합니다. 여기서 두 번째 매개변수는 문자열을 연결할 때 사이에 끼워넣을 문자열입니다.
+- strings.Split 함수는 지정된 문자열을 기준으로 문자열을 쪼개어 문자열 슬라이스로 저장합니다. 예제에서는 “ “ (공백)을 기준으로 문자열을 쪼갭니다.
+- strings.Fields 함수는 공백을 기준으로 문자열을 쪼개어 문자열 슬라이스로 저장합니다.
+- strings.FieldsFunc 함수는 유니코드 검사 함수를 정의한 뒤 특정 유니코드 값을 기준으로 문자열을 쪼개어 문자열 슬라이스로 저장합니다. 예제에서는 unicode.Is 함수를 사용하여 한글 유니코드를 기준으로 문자열을 쪼갭니다. 따라서 Hello안녕Hello는 한글 유니코드인 안녕 부분을 기준으로 쪼개져서 [Hello Hello]가 됩니다.
+- strings.Repeat 함수는 문자열을 특정 횟수만큼 반복합니다.
+- strings.Replace 함수는 문자열에서 특정 문자열을 바꿉니다. 두 번째 매개변수로 바꿀 횟수를 설정할 수 있습니다.
+이번에는 문자열을 다듬는(trim) 방법입니다.
+```
+package main
+
+import (
+	"fmt"
+	"strings"
+	"unicode"
+)
+
+func main() {
+	fmt.Println(strings.Trim("Hello,~~ world!~~", "~~")) // Hello,~~ world!
+	fmt.Println(strings.Trim("  Hello, world!  ", " "))  // Hello, world!
+
+	fmt.Println(strings.TrimLeft("~~Hello,~~ world!~~", "~~"))  // Hello,~~ world!~~
+	fmt.Println(strings.TrimRight("~~Hello,~~ world!~~", "~~")) // ~~Hello,~~ world!
+
+	f := func(r rune) bool {
+		return unicode.Is(unicode.Hangul, r) // r이 한글 유니코드이면 true를 리턴
+	}
+	var s = "안녕 Hello 고 Go 언어"
+	fmt.Println(strings.TrimFunc(s, f))      //  Hello 고 Go
+	fmt.Println(strings.TrimLeftFunc(s, f))  //  Hello 고 Go 언어
+	fmt.Println(strings.TrimRightFunc(s, f)) // 안녕 Hello 고 Go
+
+	fmt.Println(strings.TrimSpace("  Hello, world!		")) // Hello, world!
+
+	fmt.Println(strings.TrimSuffix("Hello, world!", "orld!")) // Hello, w
+	fmt.Println(strings.TrimSuffix("Hello, world!", "wor"))   // Hello, world!
+}
+```
+- strings.Trim 함수는 문자열의 앞뒤에 있는 특정 문자열을 제거합니다. 단, 문자열 중간에 있는 문자열은 제거하지 않습니다.
+- strings.TrimLeft, strings.TrimRight 함수는 문자열 앞이나 뒤에 오는 특정 문자열을 제거합니다. 마찬가지로 문자열 중간에 있는 문자열은 제거하지 않습니다.
+- strings.TrimFunc 함수는 문자열 정리 함수를 정의하여 문자열을 정리합니다. 예제에서는 문자열 앞뒤에 오는 한글을 제거합니다.
+- strings.TrimLeftFunc, strings.TrimRightFunc 함수는 문자열 정리 함수를 정의하여 문자열 앞이나 뒤에 오는 문자열을 제거합니다.
+- strings.TrimSpace 함수는 문자열 앞뒤에 오는 공백 문자를 제거합니다. 공백 문자(스페이스)와 탭 문자를 동시에 제거할 수 있습니다. 따라서 공백 문자와 탭 문자를 제거하기 위해 strings.Trim 함수를 두 번 사용하지 않아도 됩니다. 마찬가지로 문자열 중간에 있는 공백, 탭 문자는 제거하지 않습니다.
+- strings.TrimSuffix 함수는 접미사를 제거합니다. 마지막부터 문자열이 일치해야하며 중간만 일치하면 제거하지 않습니다.
+다음은 여러 개의 문자열을 동시에 바꾸는 방법입니다.
+
+```
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	r := strings.NewReplacer("<", "&lt;", ">", "&gt;")              // 바꿀 문자열을 지정
+	fmt.Println(r.Replace("<div><span>Hello, world!</span></div>")) // HTML에서 < >를 &lt; &gt;로 바꿈
+}
+```
+```
+&lt;div&gt;&lt;span&gt;Hello, world!&lt;/span&gt;&lt;/div&gt;
+```
+strings.NewReplacer로 바꿀 문자열을 지정합니다. “기존 문자열”, “새 문자열” 순서로 바꿀 문자열을 여러 개 설정할 수 있습니다. 예제에서는 HTML 문자열에서 태그를 HTML 엔티티 코드(entity code)로 바꿉니다.
+
