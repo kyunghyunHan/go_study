@@ -220,3 +220,169 @@ func main() {
 ```
 strings.NewReplacer로 바꿀 문자열을 지정합니다. “기존 문자열”, “새 문자열” 순서로 바꿀 문자열을 여러 개 설정할 수 있습니다. 예제에서는 HTML 문자열에서 태그를 HTML 엔티티 코드(entity code)로 바꿉니다.
 
+## 문자열 변환 함수
+
+다음은 strconv 패키지에서 제공하는 문자열 변환 함수입니다.
+
+- func Atoi(s string) (i int, err error): 숫자로 이루어진 문자열을 숫자로 변환
+- func Itoa(i int) string: 숫자를 문자열로 변환
+- func FormatBool(b bool) string: 불 값을 문자열로 변환
+- func FormatFloat(f float64, fmt byte, prec, bitSize int) string: 실수를 문자열로 변환
+- func FormatInt(i int64, base int) string: 부호 있는 정수를 문자열로 변환
+- func FormatUint(i uint64, base int) string: 부호 없는 정수를 문자열로 변환
+- func AppendBool(dst []byte, b bool) []byte: 불 값을 문자열로 변환하여 슬라이스 뒤에 추가
+- func AppendFloat(dst []byte, f float64, fmt byte, prec int, bitSize int) []byte: 실수를 문자열로 변환하여 슬라이스 뒤에 추가
+- func AppendInt(dst []byte, i int64, base int) []byte: 부호 있는 정수를 문자열로 변환하여 슬라이스 뒤에 추가
+- func AppendUint(dst []byte, i uint64, base int) []byte: 부호 없는 정수를 문자열로 변환하여 슬라이스 뒤에 추가
+- func ParseBool(str string) (value bool, err error): 불 형태의 문자열을 불로 변환
+- func ParseFloat(s string, bitSize int) (f float64, err error): 실수 형태의 문자열을 실수로 변환
+- func ParseInt(s string, base int, bitSize int) (i int64, err error): 부호 있는 정수 형태의 문자열을 부호 있는 정수로 변환
+- func ParseUint(s string, base int, bitSize int) (n uint64, err error): 부호 없는 정수 형태의 문자열을 부호 없는 정수로 변환
+먼저 숫자(정수)를 문자로 문자를 숫자로 변환해보겠습니다.
+
+```
+package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	var err error
+
+	var num1 int
+	num1, err = strconv.Atoi("100") // 문자열 "100"을 숫자 100으로 변환
+	fmt.Println(num1, err)          // 100 <nil>
+
+	var num2 int
+	num2, err = strconv.Atoi("10t") // 10t는 숫자가 아니므로 에러가 발생함
+	fmt.Println(num2, err)          // 0 strconv.ParseInt: parsing "10t": invalid syntax
+
+	var s string
+	s = strconv.Itoa(50) // 숫자 50을 문자열 "50"으로 변환
+	fmt.Println(s)       // 50
+}
+```
+```
+100 <nil>
+0 strconv.ParseInt: parsing "10t": invalid syntax
+50
+```
+- strconv.Atoi 함수는 숫자로 이루어진 문자열을 숫자로 변환합니다. 즉, string에서 int로 변환합니다. 문자열에는 정상적인 숫자가 들어있어야 하며 10t처럼 숫자에 영문자가 섞이거나 아예 숫자가 아니라면 에러가 발생합니다.
+- strconv.Itoa 함수는 숫자를 문자열로 변환합니다. 즉, int에서 string으로 변환합니다.
+이번에는 실수, 불, 정수를 문자열로 변환해보겠습니다.
+```
+package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	var s1 string
+	s1 = strconv.FormatBool(true)
+	fmt.Println(s1) //true: true를 문자열로 변환하여 "true"
+
+	var s2 string
+	s2 = strconv.FormatFloat(1.3, 'f', -1, 32) // f, fmt, prec, bitSize
+	fmt.Println(s2)                            // 1.3: 1.3을 문자열로 변환하여 "1.3"
+
+	var s3 string
+	s3 = strconv.FormatInt(-10, 10)
+	fmt.Println(s3) // -10: -10을 10진수로된 문자열로 변환하여 "-10"
+
+	var s4 string
+	s4 = strconv.FormatUint(32, 16)
+	fmt.Println(s4) // 20: 32를 16진수로된 문자열로 변환하여 "20"
+}
+```
+- strconv.FormatBool 함수는 불 값(true, false)을 문자열로 변환합니다.
+- strconv.FormatFloat 함수는 실수를 문자열로 변환합니다. 다음은 함수를 사용할 때 필요한 매개변수입니다.
+- - f: 변환할 실수 값입니다.
+- - fmt: 실수 형식입니다.
+- - - ‘b’: -ddddp±ddd 예) -4503599627370496p-52
+- - - ‘e’: -d.dddde±dd 예) 1.23457e+08
+- - - ‘E’: -d.ddddE±dd 예) 1.23457E+08
+- - - ‘f’: -ddd.dddd 예) 1.352
+- - - ‘g’: ‘e’와 같으며 지수 값이 클 때 사용
+- - - ‘G’: ‘E’와 같으며 지수 값이 클 때 사용
+- - prec: 실수의 정밀도입니다(지수를 제외한 숫자의 자리수). -1을 지정하면 적절한 정밀도로 변환해줍니다.
+- - bitSize: 부동소수점 비트 수입니다. 32 또는 64를 지정합니다.
+- - strconv.FormatInt, strconv.FormatUint 함수는 부호 있는 정수와 부호 없는 정수를 문자열로 변환합니다. 두 번째 매개변수에 진법을 설정하여 10진수 또는 16진수로된 문자열을 만들 수 있습니다.
+다음은 실수, 불, 정수를 문자열로 변환하여 바이트 슬라이스에 추가합니다.
+
+```
+package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	var s []byte = make([]byte, 0)
+
+	s = strconv.AppendBool(s, true)
+	fmt.Println(string(s)) // true: true를 문자열로 변환하여 "true"
+
+	s = strconv.AppendFloat(s, 1.3, 'f', -1, 32) // dst, f, fmt, prec, bitSize
+	fmt.Println(string(s)) // true1.3: 1.3을 문자열로 변환하여 "1.3", 슬라이스 뒤에 붙여서 true1.3
+
+	s = strconv.AppendInt(s, -10, 10)
+	fmt.Println(string(s)) // true1.3-10: -10을 10진수로된 문자열로 변환하여 "-10",
+                               // 슬라이스 뒤에 붙여서 true1.3-10
+
+	s = strconv.AppendUint(s, 32, 16)
+	fmt.Println(string(s)) // true1.3-1020: 32를 16진수로된 문자열로 변환하여 "20",
+                               // 슬라이스 뒤에 붙여서 true1.3-1020
+}
+```
+- strconv.AppendBool 함수는 불 값(true, false)을 문자열로 변환한 뒤 슬라이스 뒤에 추가합니다.
+- strconv.FormatFloat 함수는 실수를 문자열로 변환한 뒤 슬라이스 뒤에 추가합니다. 다음은 함수를 사용할 때 필요한 매개변수입니다.
+- dst : 변환한 문자열을 추가할 슬라이스입니다.
+- - f : 변환할 실수 값입니다.
+- - fmt : 실수 형식입니다.
+- - - ‘b’ : -ddddp±ddd 예) -4503599627370496p-52
+- - - ‘e’ : -d.dddde±dd 예) 1.23457e+08
+- - - ‘E’ : -d.ddddE±dd 예) 1.23457E+08
+- - - ‘f’ : -ddd.dddd 예) 1.352
+- - - ‘g’ : ‘e’와 같으며 지수 값이 클 때 사용
+- - - ‘G’ : ‘E’와 같으며 지수 값이 클 때 사용
+- - prec : 실수의 정밀도입니다(지수를 제외한 숫자의 자리수). -1을 지정하면 적절한 정밀도로 변환해줍니다.
+- - bitSize : 부동소수점 비트 수입니다. 32 또는 64를 지정합니다.
+- strconv.FormatInt, strconv.FormatUint 함수는 부호 있는 정수와 부호 없는 정수를 문자열로 변환한 뒤 슬라이스 뒤에 추가합니다. 세 번째 매개변수에 진법을 설정하여 10진수 또는 16진수로된 문자열을 만들 수 있습니다.
+반대로 문자열을 실수, 불, 정수로 변환할 수도 있습니다.
+```
+package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	var err error
+
+	var b1 bool
+	b1, err = strconv.ParseBool("true")
+	fmt.Println(b1, err) // true <nil>: 문자열로 "true"를 불로 변환하여 true
+
+	var num1 float64
+	num1, err = strconv.ParseFloat("1.3", 64)
+	fmt.Println(num1, err) // 1.3 <nil>: 문자열 "1.3"을 실수로 변환하여 1.3
+
+	var num2 int64
+	num2, err = strconv.ParseInt("-10", 10, 32)
+	fmt.Println(num2, err) // -10 <nil>: 10진수로된 문자열 "-10"을 정수로 변환하여 -10
+
+	var num3 uint64
+	num3, err = strconv.ParseUint("20", 16, 32)
+	fmt.Println(num3, err) // 32: 16진수로된 문자열 "20"을 정수로 변환하여 32
+}
+```
+- strconv.ParseBool 함수는 불 형태의 문자열을 불로 변환합니다. 즉, string에서 bool로 변환합니다. true, false, TRUE, FALSE, 0, 1, T, F, True, False를 변환할 수 있으며 이외의 문자열은 에러가 발생합니다.
+- strconv.ParseFloat 함수는 실수 형태의 문자열을 실수로 변환합니다. 즉, string에서 float64로 변환합니다. 두 번째 매개 변수는 부동소수점 비트 수이며 32 또는 64를 지정할 수 있습니다. 문자열에는 정상적인 형태의 실수가 들어있어야 하며 그렇지 않으면 에러가 발생합니다.
+- strconv.ParseInt, strconv.ParseUint 함수는 부호 있는 정수 형태의 문자열을 부호 있는 정수로, 부호 없는 정수 형태의 문자열을 부호 없는 정수로 변환합니다. 즉 string에서 int64로, string에서 uint64로 변환합니다. 문자열에는 정상적인 정수가 들어있어야 하며 영문자가 섞여있거나 아예 숫자가 아니라면 에러가 발생합니다.
+
