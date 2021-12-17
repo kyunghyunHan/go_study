@@ -294,9 +294,47 @@ ${second} ${first}
 다음 함수들은 regexp.Compile 함수에 정규표현식을 설정하여 사용합니다.
 
 - ReplaceAllString 함수는 정규표현식에 해당하는 문자열을 지정된 문자열과 바꿉니다. 첫 번째 매개변수는 검색할 문자열이며 두 번째 매개변수는 바꿀 문자열입니다.
-- 정규표현식을 ([a-zA-Z,]+) ([a-zA-Z!]+)처럼 괄호로 구분하여 만든 뒤 ReplaceAllString 함수로 문자열을 검색하면 첫 번째로 찾은 문자열은 ${1}이되고 두 번째로 찾은 문자열은 ${2}가 됩니다. 따라서  
-ReplaceAllString(“Hello, world!”, “${2}”)와 같이 실행하면 두 번째로 찾은 문자열인 world!만 남깁니다.
+- 정규표현식을 ([a-zA-Z,]+) ([a-zA-Z!]+)처럼 괄호로 구분하여 만든 뒤 ReplaceAllString 함수로 문자열을 검색하면 첫 번째로 찾은 문자열은 ${1}이되고 두 번째로 찾은 문자열은 ${2}가 됩니다. 따라서 ReplaceAllString(“Hello, world!”, “${2}”)와 같이 실행하면 두 번째로 찾은 문자열인 world!만 남깁니다.
 - ReplaceAllString(“Hello, world!”, “${2} ${1}”)와 같이 실행하면 첫 번째로 찾은 문자열과 두 번째로 찾은 문자열의 위치를 바꿉니다.
 - 정규표현식을 (?P<first>[a-zA-Z,]+) (?P<second>[a-zA-Z!]+)처럼 만들면 찾은 문자열에 이름을 정할 수 있습니다. ?P<이름> 형식이며 첫 번째로 찾은 문자열은 ${first}가 되고 두 번째로 찾은 문자열은 ${second}가 됩니다. 마찬가지로 ReplaceAllString(“Hello, world!”, “${second} ${first}”)와 같이 실행하면 첫 번째로 찾은 문자열과 두 번째로 찾은 문자열의 위치를 바꿉니다.
 - ReplaceAllLiteralString 함수는 문자열을 바꿀 때 정규표현식 기호를 무시합니다. 즉 ${second} ${first}는 동작하지 않고 문자 그대로(Literal) 들어갑니다.
-다음은 정규표현식으로 문자열을 분리합니다.
+다음은 정규표현식으로 문자열을 분리합니다
+	
+```
+package main
+
+import (
+	"fmt"
+	"regexp"
+)
+
+func main() {
+	re1, _ := regexp.Compile("\\.([a-z]+)\\.")
+	s1 := re1.Split("mail.hello.net www.example.com ftp.example.org", -1)
+                        // 정규표현식에 해당하는 문자열일 기준으로 모든 문자열을 쪼갬(-1)
+	fmt.Println(s1) // [mail net www com ftp org]: ".영문."을 기준으로 쪼갠 결과
+
+	re2, _ := regexp.Compile("\\.([a-z]+)\\.")
+	s2 := re2.Split("mail.hello.net www.example.com ftp.example.org", 2)
+                        // 정규표현식에 해당하는 문자열일 기준으로 문자열을 쪼갬
+	fmt.Println(s2) // [mail net www.example.com ftp.example.org]: 마지막 문자열을
+                        // 제외한 1개 문자열을 쪼갬
+
+	re3, _ := regexp.Compile("\\.([a-z]+)\\.")
+	s3 := re3.Split("mail.hello.net www.example.com ftp.example.org", 3)
+                        // 정규표현식에 해당하는 문자열일 기준으로 문자열을 쪼갬
+	fmt.Println(s3) // [mail net www com ftp.example.org]: 마지막 문자열을 제외한
+                        // 2개 문자열을 쪼갬
+
+	re4, _ := regexp.Compile("\\.([a-z]+)\\.")
+	s4 := re4.Split("mail.hello.net www.example.com ftp.example.org", 0)
+                        // 정규표현식에 해당하는 문자열일 기준으로 문자열을 쪼갬
+	fmt.Println(s4) // []: 아무 문자열도 쪼개지 않음
+}
+
+```
+	
+Split 함수는 정규표현식에 해당하는 문자열을 기준으로 문자열을 쪼갭니다. 여기서는 정규표현식을 \\.([a-z]+)\\.로 만들었으므로 . (점)으로 시작하고 .으로 끝나는 소문자 1개 이상을 기준으로 쪼갭니다. 따라서 mail.hello.net www.example.com ftp.example.org에서 .hello., .example.은 사라지고 mail net www com ftp org만 남습니다.
+
+두 번째 매개변수는 쪼갤 개수입니다. -1을 지정하면 모든 문자열을 쪼개고, 0을 지정하면 아무것도 쪼개지 않습니다. 1개 이상을 지정하면 문자열 개수 중에서 마지막 문자열은 쪼개지 않습니다. 예제처럼 2를 지정하면 mail.hello.net www.example.com ftp.example.org에서 mail.hello.net만 쪼개고 www.example.com는 쪼개지 않습니다. 따라서 mail net www.example.com ftp.example.org가 됩니다.
+	
