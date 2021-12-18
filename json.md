@@ -273,3 +273,141 @@ type Article struct {
 }
 ```
 태그는 문자열 형태이며 문자열 안에 " " (따옴표)가 포함되므로 ` ` (백쿼트)로 감싸줍니다. 그리고 JSON 문서이므로 `json:"키"` 형식으로 키 이름을 직접 지정합니다. 여기서 키 이름은 구조체 필드와 같을 필요는 없습니다.
+
+## JSON 파일사용
+
+지금까지 문자열 형태로 JSON 파일을 처리했습니다. 이번에는 JSON 파일을 만들고, 읽어보겠습니다.
+
+먼저 데이터를 JSON 파일로 저장합니다.
+
+```
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"os"
+)
+
+type Author struct {
+	Name  string `json:"name"` // 구조체 필드에 태그 지정
+	Email string `json:"email"`
+}
+
+type Comment struct {
+	Id      uint64 `json:"id"`
+	Author  Author `json:"author"`
+	Content string `json:"content"`
+}
+
+type Article struct {
+	Id         uint64    `json:"id"`
+	Title      string    `json:"title"`
+	Author     Author    `json:"author"`
+	Content    string    `json:"content"`
+	Recommends []string  `json:"recommends"`
+	Comments   []Comment `json:"comments"`
+}
+
+func main() {
+	data := make([]Article, 1) // 값을 저장할 구조체 슬라이스 생성
+
+	data[0].Id = 1
+	data[0].Title = "Hello, world!"
+	data[0].Author.Name = "Maria"
+	data[0].Author.Email = "maria@example.com"
+	data[0].Content = "Hello~"
+	data[0].Recommends = []string{"John", "Andrew"}
+	data[0].Comments = make([]Comment, 1)
+	data[0].Comments[0].Id = 1
+	data[0].Comments[0].Author.Name = "Andrew"
+	data[0].Comments[0].Author.Email = "andrew@hello.com"
+	data[0].Comments[0].Content = "Hello Maria"
+
+	doc, _ := json.Marshal(data) // data를 JSON 문서로 변환
+
+	err := ioutil.WriteFile("./articles.json", doc, os.FileMode(0644)) // articles.json 파일에 JSON 문서 저장
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+}
+```
+게시물 데이터를 저장할 슬라이스를 선언하고 make 함수로 공간을 할당합니다. 그리고 데이터를 채워넣은 뒤 json.Marshal 함수를 사용하여 JSON 문서로 변환합니다.
+
+```
+data := make([]Article, 1) // 값을 저장할 구조체 슬라이스 생성
+
+// ... 생략 ...
+
+doc, _ := json.Marshal(data) // data를 JSON 문서로 변환
+```
+ioutil.WriteFile 함수를 사용하여 변환된 JSON 문서를 파일로 저장합니다.
+
+```
+err := ioutil.WriteFile("./articles.json", doc, os.FileMode(0644)) // articles.json 파일에 JSON 문서 저장
+```
+
+세 번째 매개변수에는 유닉스/리눅스 형식의 파일의 권한(Permission)을 지정해야 합니다. 여기서는 os.FileMode 타입으로 0644를 지정하였습니다.
+
+앞에서 JSON 문서를 저장한 articles.json 파일을 읽어보겠습니다.
+
+```
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+)
+
+type Author struct {
+	Name  string `json:"name"` // 값을 저장할 구조체 슬라이스 생성
+	Email string `json:"email"`
+}
+
+type Comment struct {
+	Id      uint64 `json:"id"`
+	Author  Author `json:"author"`
+	Content string `json:"content"`
+}
+
+type Article struct {
+	Id         uint64    `json:"id"`
+	Title      string    `json:"title"`
+	Author     Author    `json:"author"`
+	Content    string    `json:"content"`
+	Recommends []string  `json:"recommends"`
+	Comments   []Comment `json:"comments"`
+}
+
+func main() {
+	b, err := ioutil.ReadFile("./articles.json") // articles.json 파일의 내용을 읽어서 바이트 슬라이스에 저장
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	var data []Article // JSON 문서의 데이터를 저장할 구조체 슬라이스 선언
+
+	json.Unmarshal(b, &data) // JSON 문서의 내용을 변환하여 data에 저장
+
+	fmt.Println(data) // [{1 Hello, world! {Maria maria@exa... (생략)
+}
+```
+```
+[{1 Hello, world! {Maria maria@example.com} Hello~ [John Andrew] [{1 {Andrew andrew@hello.com} Hello Maria}]}]
+```
+ioutil.ReadFile 함수로 JSON 파일을 읽어옵니다.
+```
+b, err := ioutil.ReadFile("./articles.json") // articles.json 파일의 내용을 읽어서
+                                             // 바이트 슬라이스에 저장
+```
+json.Unmarshal 함수를 사용하여 바이트 슬라이스 b에 저장된 값을 가져오면 됩니다.
+
+```
+var data []Article // JSON 문서의 데이터를 저장할 구조체 슬라이스 선언
+
+json.Unmarshal(b, &data) // JSON 문서의 내용을 변환하여 data에 저장
+```
