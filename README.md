@@ -159,7 +159,7 @@ const (
 - delete()함수를 사용하면 맵에서 특정 키에 해당하는 값을 제거 할수 있다  
 - for~range를 사용하여 순회할수 있으며, 순서가 지정되있지 않기 떄문에 무엇이 먼저 나올수 있을지 모른다는것점이 있다.    
 
-## [func]()
+## 👩🏻‍🎓[func](https://github.com/kyunghyunHan/go_study/blob/2ec57d0e5802105739988cedd75e60055ba6600e/func.md)
 ## [closure]()
 ## [defer]()
 ## [panic]()
