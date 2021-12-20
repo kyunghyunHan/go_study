@@ -78,7 +78,7 @@ fmt.Println(num1 >> num2) // 0
 fmt.Println(^num1)        // 252: 비트 반전 연산자
 ```
 
-## 오버플로우와 언더플로우. 
+## 🌱오버플로우와 언더플로우. 
 각 자료형에서 저장할 수 있는 최대 크기를 넘어서면 오버플로우(Overflow), 최소 크기보다 작아지면 언더플로우(Underflow)  
 ```
 package main
@@ -93,7 +93,7 @@ func main() {
 	var num4 uint64 = math.MaxUint64 + 1 // 오버플로우 컴파일 에러 발생
 }
 ```
-## 문자열 길이. 
+## 🌱문자열 길이. 
 ```
 var s1 string = "한글"
 var s2 string = "Hello"
