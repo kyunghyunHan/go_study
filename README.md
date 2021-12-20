@@ -1,6 +1,6 @@
  ![다운로드](https://user-images.githubusercontent.com/88940298/146376240-aef62ec1-d091-4a99-9bc1-90852b2db0f6.png)
 
-# Go 공부 및 정리 <img width="100" alt="스크린샷 2021-11-24 오후 12 28 54" src="https://user-images.githubusercontent.com/88940298/143169831-99d59153-1735-49a6-8d7c-d3768dfc9400.png">
+# 💯Go 공부 및 정리 <img width="100" alt="스크린샷 2021-11-24 오후 12 28 54" src="https://user-images.githubusercontent.com/88940298/143169831-99d59153-1735-49a6-8d7c-d3768dfc9400.png">
 
 ## 🌱가비지 컬렉션
 - 가비지 컬렉션 이란 메모리 관리 기법중 하나로 프로그램이 동적으로 할당했던 메모리 영역 중에서 필요없게 된 영역을 해제하는 기법
