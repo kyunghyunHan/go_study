@@ -102,7 +102,7 @@ fmt.Println(len(s1)) // 6: UTF-8 인코딩의 바이트 길이이므로 6
 fmt.Println(len(s2)) // 5: 알파벳 5글자이므로 5
 ```
 
-## 열거형. 
+## 🌱열거형. 
 
 ```
 const (
@@ -117,13 +117,13 @@ const (
 )
 ```
 
-## [패키지](https://github.com/kyunghyunHan/go_study/blob/0c7e77e48504492e73e7c61e257d35ef441d6890/package.md)
+## 🌱[패키지](https://github.com/kyunghyunHan/go_study/blob/0c7e77e48504492e73e7c61e257d35ef441d6890/package.md)
 
 
-## [fmt](https://github.com/kyunghyunHan/go_study/blob/b51d98381a325e779dbc4ed371d2f258cda180b6/fmt.md)
+## 🌱[fmt](https://github.com/kyunghyunHan/go_study/blob/b51d98381a325e779dbc4ed371d2f258cda180b6/fmt.md)
 출력함수. 
 
-## [if문](https://github.com/kyunghyunHan/go_study/blob/969ebb1c93c8cb200082b8e62919c6ebc8a7e02d/if.md)
+## 🌱[if문](https://github.com/kyunghyunHan/go_study/blob/969ebb1c93c8cb200082b8e62919c6ebc8a7e02d/if.md)
 조건문을 사용할떄 변수를 함께 선언할 수있다.  
 
 swtich 조건문과 마찬가지로 사용법은 switch,case와 비슷하지만 break문이 필요없다 .새로운 키워드인 fallthrough를 선택했다.fallthrough를사용해야 다음으로 넘어 갈 수있다.또한 다른 언어와 다르게 조건을 생략하고 case를 사용할 수 잇다.  
