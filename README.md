@@ -128,19 +128,19 @@ const (
 
 swtich 조건문과 마찬가지로 사용법은 switch,case와 비슷하지만 break문이 필요없다 .새로운 키워드인 fallthrough를 선택했다.fallthrough를사용해야 다음으로 넘어 갈 수있다.또한 다른 언어와 다르게 조건을 생략하고 case를 사용할 수 잇다.  
 
-## [for문](https://github.com/kyunghyunHan/go_study/blob/667aa33064651847371e1e867db3ee4581c2c736/for.md) 
+## 🌱[for문](https://github.com/kyunghyunHan/go_study/blob/667aa33064651847371e1e867db3ee4581c2c736/for.md) 
 
 반복문을 사용할 떄는 for키워드를 이용한다. go 언어에는 while문이 없기 떄문에 for문에서 모든 반복을 해결한다.  
 무한루프의 경우 아무것도 안주면 되어 타언어에 비해 심플하다 배열이나 슬라이드,문을 순회할떄 range키워드를 사용하여 순회 할 수 있다. 키 인덱스가 들어가며 두번쨰에는 값이 들어간다.  
 반복문을 제어하는 방법으로는 break,continue가 존재한다.break를 사용하면 반복문에서 즉시 탈출하며,continue를사용하면 그 이후 표현식은 무시하고 다시 조건문으로 돌아간다  
 
-## [goto](https://github.com/kyunghyunHan/go_study/blob/c3ff62212208d1d65ac838d443c7c22fc92ebcd2/goto.md) 
+## 🌱[goto](https://github.com/kyunghyunHan/go_study/blob/c3ff62212208d1d65ac838d443c7c22fc92ebcd2/goto.md) 
+ 
 
+## 🌱[Switch](https://github.com/kyunghyunHan/go_study/blob/da340d061c02304fafdbe324439eb4a1f91b7ace/switch.md) 
 
-## [Switch](https://github.com/kyunghyunHan/go_study/blob/da340d061c02304fafdbe324439eb4a1f91b7ace/switch.md) 
-
-## [Array](https://github.com/kyunghyunHan/go_study/blob/e7e3267cf53cf89426232efa34635a7d47fd2727/arr.md)
-## [Slice](https://github.com/kyunghyunHan/go_study/blob/20b7a158827c881e3c9055357917f4c969c1e736/slice.md)
+## 🌱[Array](https://github.com/kyunghyunHan/go_study/blob/e7e3267cf53cf89426232efa34635a7d47fd2727/arr.md)
+## 🌱[Slice](https://github.com/kyunghyunHan/go_study/blob/20b7a158827c881e3c9055357917f4c969c1e736/slice.md)
 
 제로갑:배열만 선언해놓고, 값을 할당하지 않은 경우 각 타입에 맞는 제로값이 설정된다  
 인덱스 제로베이스 : 0 부터 시작 length-1까지 해당  
