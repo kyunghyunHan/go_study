@@ -1,24 +1,24 @@
-# 문자열
+# 👩🏻‍🎓문자열
 
-## 문자열 검색하기
+## 💯문자열 검색하기
 문자열을 처리할 때 주로 사용하는 기능은 문자열 검색입니다.
 
-다음은 strings 패키지에서 제공하는 문자열 검색 함수입니다.
+strings 패키지에서 제공하는 문자열 검색 함수
 
-func Contains(s, substr string) bool: 문자열이 포함되어 있는지 검색
-func ContainsAny(s, chars string) bool: 특정 문자가 하나라도 포함되어 있는지 검색
-func ContainsRune(s string, r rune) bool: rune 자료형으로 검색
-func Count(s, sep string) int: 문자열이 몇 번 나오는지 구함
-func HasPrefix(s, prefix string) bool: 문자열이 접두사인지 판단
-func HasSuffix(s, suffix string) bool: 문자열이 접미사인지 판단
-func Index(s, sep string) int: 특정 문자열의 위치를 구함
-func IndexAny(s, chars string) int: 가장 먼저 나오는 문자의 위치를 구함
-func IndexByte(s string, c byte) int: byte 자료형으로 위치를 구함
-func IndexRune(s string, r rune) int: rune 자료형으로 위치를 구함
-func IndexFunc(s string, f func(rune) bool) int: 검색 함수를 정의하여 위치를 구함
-func LastIndex(s, sep string) int: 가장 마지막에 나오는 특정 문자열의 위치를 구함
-func LastIndexAny(s, chars string) int: 가장 마지막에 나오는 문자의 위치를 구함
-func LastIndexFunc(s string, f func(rune) bool) int: 검색 함수를 정의하여 위치를 구함
+- func Contains(s, substr string) bool: 문자열이 포함되어 있는지 검색
+- func ContainsAny(s, chars string) bool: 특정 문자가 하나라도 포함되어 있는지 검색
+- func ContainsRune(s string, r rune) bool: rune 자료형으로 검색
+- func Count(s, sep string) int: 문자열이 몇 번 나오는지 구함
+- func HasPrefix(s, prefix string) bool: 문자열이 접두사인지 판단
+- func HasSuffix(s, suffix string) bool: 문자열이 접미사인지 판단
+- func Index(s, sep string) int: 특정 문자열의 위치를 구함
+- func IndexAny(s, chars string) int: 가장 먼저 나오는 문자의 위치를 구함
+- func IndexByte(s string, c byte) int: byte 자료형으로 위치를 구함
+- func IndexRune(s string, r rune) int: rune 자료형으로 위치를 구함
+- func IndexFunc(s string, f func(rune) bool) int: 검색 함수를 정의하여 위치를 구함
+- func LastIndex(s, sep string) int: 가장 마지막에 나오는 특정 문자열의 위치를 구함
+- func LastIndexAny(s, chars string) int: 가장 마지막에 나오는 문자의 위치를 구함
+- func LastIndexFunc(s string, f func(rune) bool) int: 검색 함수를 정의하여 위치를 구함
 먼저 Hello, world! 문자열에서 특정 문자열 및 문자를 찾아보겠습니다.
 
 ```
@@ -106,7 +106,7 @@ func main() {
 - strings.LastIndexFunc 함수는 검색할 함수를 따로 정의하여 가장 마지막에 나오는 문자의 위치를 알아냅니다. 예제에서는 unicode.Is 함수를 사용하여 가장 마지막에 있는 한글 유니코드의 시작 위치를 알아냅니다.
 
 
-## 문자열 조작하기
+## 💯문자열 조작하기
 다음은 strings 패키지에서 제공하는 문자열 조작 함수입니다.
 
 - func Join(a []string, sep string) string: 문자열 슬라이스에 저장된 문자열을 모두 연결
@@ -220,7 +220,7 @@ func main() {
 ```
 strings.NewReplacer로 바꿀 문자열을 지정합니다. “기존 문자열”, “새 문자열” 순서로 바꿀 문자열을 여러 개 설정할 수 있습니다. 예제에서는 HTML 문자열에서 태그를 HTML 엔티티 코드(entity code)로 바꿉니다.
 
-## 문자열 변환 함수
+## 🌱문자열 변환 함수
 
 다음은 strconv 패키지에서 제공하는 문자열 변환 함수입니다.
 
