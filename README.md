@@ -183,10 +183,10 @@ const (
 - func다음에 파라메타 같은 형태로 나타낸 것을 볼수 있는데 리시버파라메타이다.this키워드를 대신하며 this에비해 타입을 명시해줄수 있다.  
 - 또한 리시버파라메타에 대해 포인터 자료형으로 주었는데 포인터로 주지 않으면 값복사가 되어 실제로 원본이 변화하지 않게 된다.따라서 포인터 리시버파라메타를 주어 원본도 바뀔수 있게 한것이다  
 ## 👩🏻‍🎓[interface](https://github.com/kyunghyunHan/go_study/blob/a5272a26b9678bea8ee723b0d39b13a252379de2/interface.md)
-## [gorutine]()
-## [chanl]()
-## [Mutex]()
-## [reflection]()
+## 👩🏻‍🎓[gorutine](https://github.com/kyunghyunHan/go_study/blob/56bbd6e122d560cfab793f7bb5813e4f46378876/goroutine.md)
+## 👩🏻‍🎓[chanl](https://github.com/kyunghyunHan/go_study/blob/56bbd6e122d560cfab793f7bb5813e4f46378876/channel.md)
+## 👩🏻‍🎓[Mutex](https://github.com/kyunghyunHan/go_study/blob/56bbd6e122d560cfab793f7bb5813e4f46378876/mutex.md)
+## 👩🏻‍🎓[reflection](https://github.com/kyunghyunHan/go_study/blob/56bbd6e122d560cfab793f7bb5813e4f46378876/reflection.md)
 ## [인터넷 소스사용]()
 ## [패키지 생성]()
 ## [문서화]()
