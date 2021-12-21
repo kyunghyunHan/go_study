@@ -160,12 +160,12 @@ const (
 - for~range를 사용하여 순회할수 있으며, 순서가 지정되있지 않기 떄문에 무엇이 먼저 나올수 있을지 모른다는것점이 있다.    
 
 ## 👩🏻‍🎓[func](https://github.com/kyunghyunHan/go_study/blob/2ec57d0e5802105739988cedd75e60055ba6600e/func.md)
-## [closure]()
-## [defer]()
-## [panic]()
+## 🌱[closure](https://github.com/kyunghyunHan/go_study/blob/a5272a26b9678bea8ee723b0d39b13a252379de2/closure.md)
+## 👩🏻‍🎓[defer](https://github.com/kyunghyunHan/go_study/blob/a5272a26b9678bea8ee723b0d39b13a252379de2/defer.md)
+## 👩🏻‍🎓[panic](https://github.com/kyunghyunHan/go_study/blob/a5272a26b9678bea8ee723b0d39b13a252379de2/panic.md)
 
 
-## [Pointers](https://github.com/kyunghyunHan/go_study/blob/6e6df9cdca4d7e9a5015e4da88af43d8daee8f0a/pointer.md)
+## 🌱[Pointers](https://github.com/kyunghyunHan/go_study/blob/a5272a26b9678bea8ee723b0d39b13a252379de2/pointer.md)
 <img width="171" alt="스크린샷 2021-10-27 오후 2 20 51" src="https://user-images.githubusercontent.com/88940298/139004540-59a4b021-cb73-4120-aa5c-1f8cf0c42b13.png">
 - & :메모리의 주소값
 - * : 주소에 담긴 값을 살펴볼수 잇음
@@ -174,7 +174,7 @@ const (
 
 
 
-## [struct](https://github.com/kyunghyunHan/go_study/blob/20b7a158827c881e3c9055357917f4c969c1e736/struct.md)
+## 👩🏻‍🎓[struct](https://github.com/kyunghyunHan/go_study/blob/a5272a26b9678bea8ee723b0d39b13a252379de2/struct.md)
 
 - go 에는 클래스가 없다.  객체라는 단어는 거의 사용하지 않으며 c언어처럼 구조체라는 존재가 있다.  
 - 구조체는 클래스처럼 객체를 찍어내기위한 판 이라 접근하면 좋다.  
@@ -182,7 +182,7 @@ const (
 - 메서드는 일반적은 메서드파라메터외에 리시버파라메터라는것을 사용한다.이는 go의 특징이다.  
 - func다음에 파라메타 같은 형태로 나타낸 것을 볼수 있는데 리시버파라메타이다.this키워드를 대신하며 this에비해 타입을 명시해줄수 있다.  
 - 또한 리시버파라메타에 대해 포인터 자료형으로 주었는데 포인터로 주지 않으면 값복사가 되어 실제로 원본이 변화하지 않게 된다.따라서 포인터 리시버파라메타를 주어 원본도 바뀔수 있게 한것이다  
-## [interface]()
+## 👩🏻‍🎓[interface](https://github.com/kyunghyunHan/go_study/blob/a5272a26b9678bea8ee723b0d39b13a252379de2/interface.md)
 ## [gorutine]()
 ## [chanl]()
 ## [Mutex]()
