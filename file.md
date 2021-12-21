@@ -1,12 +1,12 @@
-# 파일 처리
+# 👩🏻‍🎓파일 처리
 
-## 파일쓰기 
-다음은 os 패키지에서 제공하는 파일 함수와 파일 쓰기 함수입니다.
+## 💯파일쓰기 
+os 패키지에서 제공하는 파일 함수와 파일 쓰기 함수
 
 - func Create(name string) (file *File, err error): 기존 파일을 열거나 새 파일을 생성
 - func (f *File) Close() error: 열린 파일을 닫음
 - func (f *File) Write(b []byte) (n int, err error): 파일에 값을 씀. 파일에 쓴 데이터의 길이와 에러 값을 리턴
-hello.txt 파일에 Hello, world! 문자열을 저장해보겠습니다.
+hello.txt 파일에 Hello, world! 문자열을 저장
 
 ```
 package main
@@ -38,20 +38,17 @@ func main() {
 ```
 13 바이트 저장 완료
 ```
-os.Create 함수로 hello.txt 파일을 먼저 생성합니다(hello.txt 파일이 이미 있으면 파일을 열고 값을 덮어씁니다). 여기서 파일 생성에 성공하면 file 인스턴스가 리턴됩니다. 그리고 파일을 열었으면 항상 file.Close 함수로 닫아줍니다(파일을 닫을 때 지연 호출 defer를 사용하면 편리합니다. 코드상에서는 파일을 연 즉시 파일을 닫는 코드가 나오므로 파일 닫기를 까먹는 일이 줄어듭니다).
+- os.Create 함수로 hello.txt 파일을 생성,(hello.txt 파일이 이미 있으면 파일을 열고 값을 덮어씁니다). 여기서 파일 생성에 성공하면 file 인스턴스가 리턴됩니다. 그리고 파일을 열었으면 항상 file.Close 함수로 닫아줍니다(파일을 닫을 때 지연 호출 defer를 사용하면 편리합니다. 코드상에서는 파일을 연 즉시 파일을 닫는 코드가 나오므로 파일 닫기를 까먹는 일이 줄어듭니다).
 
 file 인스턴스에서 Write 함수를 사용하면 []byte 슬라이스의 내용을 파일에 저장할 수 있습니다. 여기서는 문자열 변수 s를 []byte 형식으로 변환하여 Hello, world!를 파일에 저장했습니다.
 
-## 파일 읽기
+## 💯파일 읽기
 
-다음은 os 패키지에서 제공하는 파일 열기, 파일 정보, 파일 읽기 함수입니다.
+ os 패키지에서 제공하는 파일 열기, 파일 정보, 파일 읽기 함수
 
-func Open(name string) (file *File, err error): 파일 열기
-func (f *File) Stat() (fi FileInfo, err error): 파일의 정보를 얻어옴
-func (f *File) Read(b []byte) (n int, err error): 파일에서 값을 읽음. 파일에서 읽은 데이터의 길이와 에러 값을 리턴
-이제 파일을 읽어보겠습니다.
-
-
+- func Open(name string) (file *File, err error): 파일 열기
+- func (f *File) Stat() (fi FileInfo, err error): 파일의 정보를 얻어옴
+- func (f *File) Read(b []byte) (n int, err error): 파일에서 값을 읽음. 파일에서 읽은 데이터의 길이와 에러 값을 리턴
 ```
 package main
 
@@ -90,16 +87,15 @@ func main() {
 13 바이트 읽기 완료
 Hello, world!
 ```
-os.Open 함수로 hello.txt 파일을 엽니다(hello.txt 파일이 없으면 에러가 발생합니다). 여기서 파일 열기에 성공하면 file 인스턴스가 리턴됩니다. 단, os.Open 함수로 파일을 열었을 때는 읽기만 할 수 있습니다.
+- os.Open 함수로 hello.txt 파일을 엽니다(hello.txt 파일이 없으면 에러가 발생합니다). 여기서 파일 열기에 성공하면 file 인스턴스가 리턴됩니다. 단, os.Open 함수로 파일을 열었을 때는 읽기만 할 수 있습니다.
 
-파일을 읽기 전에 파일 크기를 구해와야 하므로 file.Stat 함수로 파일의 정보를 얻어옵니다. 그리고 fi.Size 함수로 파일 크기만큼 슬라이스를 생성합니다. 마지막으로 file.Read 함수에 슬라이스를 넣으면 파일의 내용을 읽어올 수 있습니다.
+- 파일을 읽기 전에 파일 크기를 구해와야 하므로 file.Stat 함수로 파일의 정보를 얻어옵니다. 그리고 fi.Size 함수로 파일 크기만큼 슬라이스를 생성합니다. 마지막으로 file.Read 함수에 슬라이스를 넣으면 파일의 내용을 읽어올 수 있습니다.
 
-## 파일 읽기 쓰기
-다음은 os 패키지에서 제공하는 파일 열기 함수와 파일 포인터 설정 함수입니다.
+## 💯파일 읽기 쓰기
+os 패키지에서 제공하는 파일 열기 함수와 파일 포인터 설정 함수
 
-func OpenFile(name string, flag int, perm FileMode) (file *File, err error): 파일 플래그, 파일 모드를 지정하여 파일 열기
-func (f *File) Seek(offset int64, whence int) (ret int64, err error): 파일을 읽거나 쓸 위치로 이동
-os.OpenFile 함수를 사용하여 읽기/쓰기 모드로 파일을 연 뒤 파일을 읽고 써보겠습니다
+- func OpenFile(name string, flag int, perm FileMode) (file *File, err error): 파일 플래그, 파일 모드를 지정하여 파일 열기
+- func (f *File) Seek(offset int64, whence int) (ret int64, err error): 파일을 읽거나 쓸 위치로 이동
 ```
 package main
 
@@ -156,7 +152,8 @@ func main() {
 15 바이트 읽기 완료
 안녕하세요
 ```
-os.OpenFile 함수는 파일 이름, 플래그, 파일 모드를 받습니다. 먼저 플래그의 종류는 다음과 같습니다.
+- os.OpenFile 함수는 파일 이름, 플래그, 파일 모드를 받습니다. 
+- 플래그의 종류
 
 |플래그	|설명|
 |-----|-------|
@@ -170,11 +167,11 @@ os.OpenFile 함수는 파일 이름, 플래그, 파일 모드를 받습니다. �
 |os.O_TRUNC	|파일이 있다면 파일을 연 뒤 내용을 삭제합니다.|
 
 
-플래그는 OR(|) 연산자를 사용하여 조합할 수 있습니다. 여기서는 os.O_RDWR로 읽기, 쓰기를 하고, os.O_CREATE로 파일이 없으면 파일을 생성하고, os.O_TRUNC로 파일이 있을 때는 파일을 연 뒤 내용을 삭제합니다. 그리고 파일 모드는 유닉스/리눅스 형식의 권한(Permission)을 지정합니다. 여기서는 os.FileMode 타입으로 0644를 지정했습니다.
+- 플래그는 OR(|) 연산자를 사용하여 조합할 수 있습니다. 여기서는 os.O_RDWR로 읽기, 쓰기를 하고, os.O_CREATE로 파일이 없으면 파일을 생성하고, os.O_TRUNC로 파일이 있을 때는 파일을 연 뒤 내용을 삭제합니다. 그리고 파일 모드는 유닉스/리눅스 형식의 권한(Permission)을 지정합니다. 여기서는 os.FileMode 타입으로 0644를 지정했습니다.
 
-file.Write 함수로 파일에 문자열을 저장합니다. 그리고 다시 file.Stat 함수로 파일 크기를 구해와서 슬라이스를 생성합니다.
+- file.Write 함수로 파일에 문자열을 저장합니다. 그리고 다시 file.Stat 함수로 파일 크기를 구해와서 슬라이스를 생성합니다.
 
-파일을 읽기 전에 file.Read, file.Write 함수로 파일을 읽거나 쓰면 해당 크기만큼 읽기/쓰기 위치(Offset)가 이동합니다. 따라서 앞에서 file.Write 함수로 파일에 내용을 저장했으므로 Offset이 15바이트만큼 앞으로 이동했습니다. 파일을 처음부터 읽으려면 file.Seek(0, os.SEEK_SET)처럼 파일 읽기/쓰기 위치를 초기화해줍니다.
+- 파일을 읽기 전에 file.Read, file.Write 함수로 파일을 읽거나 쓰면 해당 크기만큼 읽기/쓰기 위치(Offset)가 이동합니다. 따라서 앞에서 file.Write 함수로 파일에 내용을 저장했으므로 Offset이 15바이트만큼 앞으로 이동했습니다. 파일을 처음부터 읽으려면 file.Seek(0, os.SEEK_SET)처럼 파일 읽기/쓰기 위치를 초기화해줍니다.
 
 file.Seek 함수에서 첫 번째 매개변수는 offset(바이트)이며 두 번째 매개변수는 기준점입니다. 다음은 설정할 수 있는 기준점입니다.
 
@@ -197,10 +194,10 @@ file.Seek(0, os.SEEK_SET)이면 파일의 맨 처음부터 0바이트이므로 �
 파일 권한이 0644라면 소유자는 읽고 쓸 수 있으며(6=4+2) 그룹과 권한이 없는 소유자는 읽기(4)만 할 수 있습니다. 처음 0은 Sticky bit, SetUID, SetGID 중 어떤 것도 사용하지 않는 설정입니다.
 
 
-## ioutil 패키지 사용하기
+## 💯ioutil 패키지 사용하기
 ioutil 패키지를 사용하면 좀 더 간단하게 파일을 읽고 쓸 수 있습니다.
 
-다음은 ioutil 패키지에서 제공하는 파일 함수입니다.
+ioutil 패키지에서 제공하는 파일 함수
 
 - func WriteFile(filename string, data []byte, perm os.FileMode) error: 파일 쓰기. 에러 값을 리턴
 - func ReadFile(filename string) ([]byte, error): 파일 읽기. 읽은 데이터(바이트 슬라이스)와 에러 값을 리턴
