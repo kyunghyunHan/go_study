@@ -1,5 +1,5 @@
 
-# GoLang Mysql 
+# 👩🏻‍🎓GoLang Mysql 
 
 1.Bash 셸을 시작
 
