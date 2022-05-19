@@ -1,39 +1,6 @@
- ![다운로드](https://user-images.githubusercontent.com/88940298/146376240-aef62ec1-d091-4a99-9bc1-90852b2db0f6.png)
 
 # 💯Go 공부 및 정리 <img width="100" alt="스크린샷 2021-11-24 오후 12 28 54" src="https://user-images.githubusercontent.com/88940298/143169831-99d59153-1735-49a6-8d7c-d3768dfc9400.png">
-
-## 🌱가비지 컬렉션
-- 가비지 컬렉션 이란 메모리 관리 기법중 하나로 프로그램이 동적으로 할당했던 메모리 영역 중에서 필요없게 된 영역을 해제하는 기법
-- Go 언어는 가비지 컬렉션(Garbage Collection, GC)을 제공
-- C, C++는 메모리를 할당하면 반드시 해제를 해주어야 하며  로직 작성보다 메모리 관리에 더 많은 노력과 시간을 소모하고 있어서 생산성이 많이 떨어진다  이후 메모리를 알아서 관리해주는 가비지 컬렉션 기술이 나왔고, 이 기술을 사용한 Java와 C#이 등장했으며 마찬가지로 Python, Ruby, JavaScript 등의 스크립트 언어들도 각 언어의 가상 머신에서 가비지 컬렉션 기술을 사용
-- Go 언어는 메모리를 관리해주는 가비지 컬렉터(Garbage Collector)가 실행 파일안에 내장되어 있다. 가상 머신 위에서 실행되는 언어들처럼 가상 머신이 메모리 관리를 해주는 것과 차이가 있다
-- Go 언어는 C, C++ 실행 파일 방식의 간결함과 가상 머신의 가비지 컬렉션 기능을 포함하고 있다.
-
-## 🌱병행성 
-- Go 언어는 go 키워드를 통해 함수 여러 개를 동시에 실행할 수 있다. 이렇게 실행된 함수를 고루틴(Goroutine)이라고 하는데 스레드와는 차이점이 있다. 스레드는 운영체제의 커널에서 제공하는 리소스이기 때문에 많이 생성할수록 부담이 커짐
-- 최대 프로세서(코어) 개수 설정에 따라 멀티코어도 지원(현재 프로세서의 개수를 구할 수 있으며, 일부 프로세서만 사용할 수도 있다)
-<img width="400" alt="스크린샷 2021-10-26 오전 12 39 35" src="https://user-images.githubusercontent.com/88940298/138727383-95f932d6-ffde-467d-bd05-5e3806c4906f.png">
-
-
-- go 에서는 ;(세미클론이 필요없다) 선택적으로 사용할 수는 있음  
-- go에서는 패키지 개념 패키지 내부에서는 변수,상수,함수,구조체,메서드가 선언
-- 모든 go파일은 패키지 내부에속해야한다 main패키지가 아닌 다른코드를 실행시킬수 없음  
-- import"fmt" 다른 패키지를 포함하기 위해 사용 go 의패키지는 src에 모여있으며 pkg폴더에는 그러한 패키지가 컴파일된 소스코드가 모여있다  
-- 변수 선언 var 사용 함수안에서는 단축변수선언 사용가능 :=  
-- 변수를 여러개를 선언하고 초기화할떄에는 반드시 선언하는 변수와 초기화하는 값의 개수가 같아야함 타입은 달라도 됨  
-- go에서는 패키지,타입과 똑같은 이름의 변수를 사용하여도 에러가 나지 않는다  
-
 ## 🌱변수 
-
-- var 변수1, 변수2 자료형 = 초깃값1, 초깃값2 : 여러개의 변수를 
-
-```
-var x, y int = 30, 50       // x = 30, y = 50
-var age, name = 10, "Maria" // age = 10, name = "Maria"
-```
-```
-a, b, c, d := 1, 3.4, "Hello, world!", false // a = 1, b = 3.4, c = "Hello, world!", d = false
-```
 ## 🌱상수 const
 
 - go에서는 타입을 정하지 않으면 go에서 알아서 타입을 지정해준다  
@@ -103,85 +70,21 @@ fmt.Println(len(s2)) // 5: 알파벳 5글자이므로 5
 ```
 
 ## 🌱열거형. 
-
-```
-const (
-	Sunday       = 0
-	Monday       = 1
-	Tuesday      = 2
-	Wednesday    = 3
-	Thursday     = 4
-	Friday       = 5
-	Saturday     = 6
-	numberOfDays = 7
-)
-```
-
 ## 🌱[패키지](https://github.com/kyunghyunHan/go_study/blob/61bf0e44d9f7a92929b2748d7dbd53704b869449/package.md)
-
-
 ## 🌱[fmt](https://github.com/kyunghyunHan/go_study/blob/61bf0e44d9f7a92929b2748d7dbd53704b869449/fmt.md)
-출력함수. 
-
 ## 🌱[if문](https://github.com/kyunghyunHan/go_study/blob/61bf0e44d9f7a92929b2748d7dbd53704b869449/if.md)
-- 조건문을 사용할떄 변수를 함께 선언할 수있다.  
-
-- swtich 조건문과 마찬가지로 사용법은 switch,case와 비슷하지만 break문이 필요없다 .새로운 키워드인 fallthrough를 선택했다.fallthrough를사용해야 다음으로 넘어 갈 수있다.또한 다른 언어와 다르게 조건을 생략하고 case를 사용할 수 잇다.  
-
 ## 🌱[for문](https://github.com/kyunghyunHan/go_study/blob/61bf0e44d9f7a92929b2748d7dbd53704b869449/for.md) 
-
-- 반복문을 사용할 떄는 for키워드를 이용한다. go 언어에는 while문이 없기 떄문에 for문에서 모든 반복을 해결한다.  
-- 무한루프의 경우 아무것도 안주면 되어 타언어에 비해 심플하다 배열이나 슬라이드,문을 순회할떄 range키워드를 사용하여 순회 할 수 있다. 키 인덱스가 들어가며 두번쨰에는 값이 들어간다.  
-- 반복문을 제어하는 방법으로는 break,continue가 존재한다.break를 사용하면 반복문에서 즉시 탈출하며,continue를사용하면 그 이후 표현식은 무시하고 다시 조건문으로 돌아간다  
-
 ## 🌱[goto](https://github.com/kyunghyunHan/go_study/blob/61bf0e44d9f7a92929b2748d7dbd53704b869449/goto.md) 
- 
-
 ## 🌱[Switch](https://github.com/kyunghyunHan/go_study/blob/61bf0e44d9f7a92929b2748d7dbd53704b869449/switch.md) 
-
 ## 🌱[Array](https://github.com/kyunghyunHan/go_study/blob/61bf0e44d9f7a92929b2748d7dbd53704b869449/arr.md)
 ## 🌱[Slice](https://github.com/kyunghyunHan/go_study/blob/61bf0e44d9f7a92929b2748d7dbd53704b869449/slice.md)
-
-- 제로갑:배열만 선언해놓고, 값을 할당하지 않은 경우 각 타입에 맞는 제로값이 설정된다  
-- 인덱스 제로베이스 : 0 부터 시작 length-1까지 해당  
-- 슬라이스:크기가 정해지지 않은 배열이며 길이가 동적으로 변할수 있다.  
-- go의 슬라이스는 배열의 뷰(view)일뿐 다른 의미는 가지지 않는다 .  
-- make()빌트인 함수 사용하여 생성  
-- 또한 슬라이스를 변경하면 원본 배열도 바뀌며 원본 배열을 바꾸면 슬라이스도 변경된다.  
-- append()슬라이스에 값을 추가할떄 사용   
-
 ## 👩🏻‍🎓[Map](https://github.com/kyunghyunHan/go_study/blob/8b7e2994f1f700cd0a1ef59e9e980166b545c5c0/map.md)
-<img width="461" alt="스크린샷 2021-10-27 오후 2 35 41" src="https://user-images.githubusercontent.com/88940298/139005924-44e7384d-59ac-48a1-a11d-bdac7f2309c1.png">
-
-- 맵은 자바스크립트의 객체 리터럴과 비슷하게 키와 값을 가질 수 있는 자료구도이다  
-- 맵을 사용하면 배열과 슬라이스를 사용했을떄 거처야할 일부 번거로운 연산과정을 거칠 필요가 없이 키와 값이 매핑되어 있기 떄문에 접근이나 값을 수정하는 것이 수월하다.  
-- 데이터가 순서대로 정렬되지 않는 특징이 있어 정려로딘 데이터를 원한다면 별도의 정렬 함수를 사용해야한다.  
-- delete()함수를 사용하면 맵에서 특정 키에 해당하는 값을 제거 할수 있다  
-- for~range를 사용하여 순회할수 있으며, 순서가 지정되있지 않기 떄문에 무엇이 먼저 나올수 있을지 모른다는것점이 있다.    
-
 ## 👩🏻‍🎓[func](https://github.com/kyunghyunHan/go_study/blob/2ec57d0e5802105739988cedd75e60055ba6600e/func.md)
 ## 🌱[closure](https://github.com/kyunghyunHan/go_study/blob/a5272a26b9678bea8ee723b0d39b13a252379de2/closure.md)
 ## 👩🏻‍🎓[defer](https://github.com/kyunghyunHan/go_study/blob/a5272a26b9678bea8ee723b0d39b13a252379de2/defer.md)
 ## 👩🏻‍🎓[panic](https://github.com/kyunghyunHan/go_study/blob/a5272a26b9678bea8ee723b0d39b13a252379de2/panic.md)
-
-
 ## 🌱[Pointers](https://github.com/kyunghyunHan/go_study/blob/a5272a26b9678bea8ee723b0d39b13a252379de2/pointer.md)
-<img width="171" alt="스크린샷 2021-10-27 오후 2 20 51" src="https://user-images.githubusercontent.com/88940298/139004540-59a4b021-cb73-4120-aa5c-1f8cf0c42b13.png">
-- & :메모리의 주소값
-- * : 주소에 담긴 값을 살펴볼수 잇음
-
-<img width="340" alt="스크린샷 2021-10-27 오후 2 26 28" src="https://user-images.githubusercontent.com/88940298/139005018-256a8d69-4597-40b3-aa49-0cd0cdc570c3.png">
-
-
-
 ## 👩🏻‍🎓[struct](https://github.com/kyunghyunHan/go_study/blob/a5272a26b9678bea8ee723b0d39b13a252379de2/struct.md)
-
-- go 에는 클래스가 없다.  객체라는 단어는 거의 사용하지 않으며 c언어처럼 구조체라는 존재가 있다.  
-- 구조체는 클래스처럼 객체를 찍어내기위한 판 이라 접근하면 좋다.  
-- struct라는 키워드를 사용하며 person이라는구조체를 선언하고 main에서 구조체를 타입으로 갖는 변수를 선언하고 값을 할당하는 모습을 보여주고 있다.  
-- 메서드는 일반적은 메서드파라메터외에 리시버파라메터라는것을 사용한다.이는 go의 특징이다.  
-- func다음에 파라메타 같은 형태로 나타낸 것을 볼수 있는데 리시버파라메타이다.this키워드를 대신하며 this에비해 타입을 명시해줄수 있다.  
-- 또한 리시버파라메타에 대해 포인터 자료형으로 주었는데 포인터로 주지 않으면 값복사가 되어 실제로 원본이 변화하지 않게 된다.따라서 포인터 리시버파라메타를 주어 원본도 바뀔수 있게 한것이다  
 ## 👩🏻‍🎓[interface](https://github.com/kyunghyunHan/go_study/blob/a5272a26b9678bea8ee723b0d39b13a252379de2/interface.md)
 ## 👩🏻‍🎓[gorutine](https://github.com/kyunghyunHan/go_study/blob/56bbd6e122d560cfab793f7bb5813e4f46378876/goroutine.md)
 ## 🎓🔥[chanl](https://github.com/kyunghyunHan/go_study/blob/56bbd6e122d560cfab793f7bb5813e4f46378876/channel.md)
@@ -209,10 +112,6 @@ const (
 ## 📖[에러](https://github.com/kyunghyunHan/go_study/blob/3ce5ed0e3541f652e49b8f90248effddb3200dbc/Error.md)
 ## 💯[단위테스트](https://github.com/kyunghyunHan/go_study/blob/3ce5ed0e3541f652e49b8f90248effddb3200dbc/TEST.md)
 ## 😀캡슐화 Getter/setter. 
-- Main패키지에서 접근 가능한것은 대문자로 되어있는 메서드이며 setter를 만들떄 항상 Set*의 형태로한다
-- 또한 New로 시작하는 것은 생성자라 생각하면 좋다
-
-
 ## 🌱[서버 연결](https://github.com/kyunghyunHan/go_study/blob/f29db2308b47119deb3f708d129a7fa0df3fbeea/golangMysql.md)
 ## 🌱[Mysql 연결]()
 
